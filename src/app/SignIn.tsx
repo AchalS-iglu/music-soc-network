@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 import { colours } from '../styles/colours';
 
-export default function App() {
+export default function SignIn() {
+  console.log('test');
   return (
     <View style={styles.container}>
       <Text style={styles.h1}>SignIn</Text>

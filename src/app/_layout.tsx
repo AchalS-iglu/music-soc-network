@@ -6,6 +6,10 @@ import { colours } from '../styles/colours';
 export default function HomeLayout() {
   return (
     <>
+      <View style={topbarStyles.bar}>
+        <View style={topbarStyles.iconContainer}>booba</View>
+        <View style={topbarStyles.iconContainer}>booba right</View>
+      </View>
       <Slot />
       <View style={navbarStyles.bar}>
         <View style={navbarStyles.iconContainer}>
@@ -43,6 +47,20 @@ export default function HomeLayout() {
     </>
   );
 }
+
+const topbarStyles = StyleSheet.create({
+  bar: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    minHeight: 36,
+    maxHeight: 36,
+    width: '100%',
+  },
+  iconContainer: {},
+  icon: {},
+});
 
 const navbarStyles = StyleSheet.create({
   bar: {

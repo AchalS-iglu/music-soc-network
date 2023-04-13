@@ -2,12 +2,6 @@ import { Redirect } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
-  const user = null;
-
-  if (!user) {
-    Redirect({ href: '/SignIn' });
-  }
-
   return (
     <View style={styles.container}>
       <Text>Hello World</Text>
