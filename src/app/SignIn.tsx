@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { colours } from '../styles/colours';
 
 export default function App() {
   return (
@@ -24,7 +25,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: colours.BaseA,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -35,8 +36,9 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
+    borderColor: colours.Red,
+    borderWidth: 2,
+    borderRadius: 10,
     width: '75%',
     marginBottom: 10,
     padding: 10,
