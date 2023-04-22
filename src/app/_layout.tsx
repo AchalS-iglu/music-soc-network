@@ -5,11 +5,19 @@ import { colours } from '../styles/colours';
 
 export default function HomeLayout() {
   return (
-    <>
-      <View style={topbarStyles.bar}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: colours.BaseA,
+        height: '100vh',
+        width: '100vw',
+        
+      }}
+    >
+      {/* <View style={topbarStyles.bar}>
         <View style={topbarStyles.iconContainer}>booba</View>
         <View style={topbarStyles.iconContainer}>booba right</View>
-      </View>
+      </View> */}
       <Slot />
       <View style={navbarStyles.bar}>
         <View style={navbarStyles.iconContainer}>
@@ -44,7 +52,7 @@ export default function HomeLayout() {
         </View>
       </View>
       <StatusBar style="auto" />
-    </>
+    </View>
   );
 }
 
@@ -57,6 +65,11 @@ const topbarStyles = StyleSheet.create({
     minHeight: 36,
     maxHeight: 36,
     width: '100%',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1,
   },
   iconContainer: {},
   icon: {},
@@ -69,9 +82,13 @@ const navbarStyles = StyleSheet.create({
     backgroundColor: colours.BaseA,
     alignItems: 'center',
     justifyContent: 'space-between',
-    minHeight: 36,
-    maxHeight: 36,
+    height: 36,
     width: '100%',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1,
   },
   iconContainer: {
     flex: 1,
