@@ -1,26 +1,23 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
-
-
 const ProfilePage = () => {
   return (
     <View style={styles.container}>
-      {/* <TopNotificationBar /> */}
-      <View style={{
-        flex:1,
-        width:"100%",
-        justifyContent:'flex-start'
-      }}>
-        
-      <Image
+      <View
         style={{
-          height: 32,
-          width: 32,
-          
+          width: '100%',
+          justifyContent: 'flex-start',
         }}
-        source={require('../components/common/icons/barChart.svg')}
-      /> </View> 
+      >
+        <Image
+          style={{
+            height: 32,
+            width: 32,
+          }}
+          source={require('../../components/common/icons/barChart.svg')}
+        />{' '}
+      </View>
       <Image
         style={styles.profileImage}
         source={{ uri: 'https://img.icons8.com/ios-glyphs/256/user--v1.png' }}
@@ -44,7 +41,7 @@ const ProfilePage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems:'center'
+    alignItems: 'center',
   },
   profileImage: {
     width: 150,
@@ -78,7 +75,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#777',
   },
-  
 });
 
 export default ProfilePage;
