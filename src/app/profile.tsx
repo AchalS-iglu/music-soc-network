@@ -4,18 +4,33 @@ import { FaBell } from 'react-icons/fa';
 
 const TopNotificationBar = () => {
   return (
-    <div className="top-notification-bar">
-      <div className="stats-icon">
-        <FaBell />
-      </div>
-    </div>
+    <View style={{
+        flex:1,
+        width:"100%",
+        height:32,
+        alignItems:"center"
+    }}>
+       <Image
+       style={{
+        height:32,
+        width:32,
+       }}
+       source={require("../components/common/icons/barChart.svg")} />
+      </View>
+    
     );
 };
 
 const ProfilePage = () => {
   return (
     <View style={styles.container}>
-        <TopNotificationBar />
+        {/* <TopNotificationBar /> */}
+        <Image
+       style={{
+        height:32,
+        width:32,
+       }}
+       source={require("../components/common/icons/barChart.svg")} />
      <Image
       style={styles.profileImage}
    source={{ uri: 'https://img.icons8.com/ios-glyphs/256/user--v1.png' }}
@@ -39,9 +54,6 @@ const ProfilePage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fff',
   },
   profileImage: {
     width: 150,
