@@ -1,10 +1,17 @@
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { colours } from '../../styles/colours';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Chat = () => {
   return (
-    <View>
+    <View
+      style={{
+        position: 'relative',
+        height: '100vh',
+        width: '100vw',
+      }}
+    >
       <View
         style={{
           height: 48,
@@ -14,6 +21,11 @@ const Chat = () => {
           justifyContent: 'space-between',
           borderBottomWidth: 1,
           borderBottomColor: colours.GreenNice,
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          backgroundColor: colours.BaseA,
+          zIndex: 1,
         }}
       >
         <Image
@@ -35,28 +47,6 @@ const Chat = () => {
         />
       </View>
       {/* search bar */}
-      <View
-        style={{
-          height: 32,
-          flexDirection: 'row',
-          alignItems: 'center',
-          marginHorizontal: 16,
-          marginVertical: 8,
-          borderRadius: 8,
-          borderWidth: 1,
-          backgroundColor: colours.BaseB,
-        }}
-      >
-        <Image
-          source={require('../../components/common/icons/search.svg')}
-          style={{
-            height: 24,
-            width: 24,
-            marginHorizontal: 8,
-          }}
-        />
-        <Text> Search </Text>
-      </View>
       {/* <View
         style={{
           width: '100%',
@@ -77,10 +67,31 @@ const Chat = () => {
       </View> */}
       <ScrollView
         style={{
-          height: '20%',
           width: '100%',
         }}
       >
+        <View
+          style={{
+            height: 32,
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginHorizontal: 16,
+            borderRadius: 8,
+            borderWidth: 1,
+            backgroundColor: colours.BaseB,
+            marginTop: 60,
+          }}
+        >
+          <Image
+            source={require('../../components/common/icons/search.svg')}
+            style={{
+              height: 24,
+              width: 24,
+              marginHorizontal: 8,
+            }}
+          />
+          <Text> Search </Text>
+        </View>
         {[
           {
             name: 'John',
