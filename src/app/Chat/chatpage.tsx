@@ -23,7 +23,11 @@ const ChatPage = () => {
     setText('');
   };
 
-  const renderItem = ({ item }) => (
+  const renderItem = ({
+    item,
+  }: {
+    item: { id: number; text: string; user: string };
+  }) => (
     <View
       style={
         item.user === 'me'

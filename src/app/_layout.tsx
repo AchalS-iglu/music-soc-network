@@ -10,7 +10,6 @@ export default function HomeLayout() {
         flex: 1,
         height: '100vh',
         width: '100vw',
-        
       }}
     >
       {/* <View style={topbarStyles.bar}>

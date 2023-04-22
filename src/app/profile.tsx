@@ -1,39 +1,41 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import { FaBell } from 'react-icons/fa';
 
 const TopNotificationBar = () => {
   return (
-    <View style={{
-        flex:1,
-        width:"100%",
-        height:32,
-        alignItems:"center"
-    }}>
-       <Image
-       style={{
-        height:32,
-        width:32,
-       }}
-       source={require("../components/common/icons/barChart.svg")} />
-      </View>
-    
-    );
+    <View
+      style={{
+        flex: 1,
+        width: '100%',
+        height: 32,
+        alignItems: 'center',
+      }}
+    >
+      <Image
+        style={{
+          height: 32,
+          width: 32,
+        }}
+        source={require('../components/common/icons/barChart.svg')}
+      />
+    </View>
+  );
 };
 
 const ProfilePage = () => {
   return (
     <View style={styles.container}>
-        {/* <TopNotificationBar /> */}
-        <Image
-       style={{
-        height:32,
-        width:32,
-       }}
-       source={require("../components/common/icons/barChart.svg")} />
-     <Image
-      style={styles.profileImage}
-   source={{ uri: 'https://img.icons8.com/ios-glyphs/256/user--v1.png' }}
+      {/* <TopNotificationBar /> */}
+      <Image
+        style={{
+          height: 32,
+          width: 32,
+        }}
+        source={require('../components/common/icons/barChart.svg')}
+      />
+      <Image
+        style={styles.profileImage}
+        source={{ uri: 'https://img.icons8.com/ios-glyphs/256/user--v1.png' }}
       />
       <Text style={styles.name}>Joe Alwyn</Text>
       <Text style={styles.bio}>Swiftie</Text>
@@ -45,8 +47,8 @@ const ProfilePage = () => {
         <View style={styles.stat}>
           <Text style={styles.statNumber}>500</Text>
           <Text style={styles.statTitle}>Following</Text>
-        </View>         
         </View>
+      </View>
     </View>
   );
 };
@@ -90,5 +92,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProfilePage;   
-   
+export default ProfilePage;
