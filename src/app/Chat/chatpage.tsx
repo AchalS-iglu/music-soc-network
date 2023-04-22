@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Text,
 } from 'react-native';
+import { colours } from '../../styles/colours';
 
 const ChatPage = () => {
   const [messages, setMessages] = useState([
@@ -71,11 +72,10 @@ const ChatPage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     padding: 10,
   },
   myMessageContainer: {
-    backgroundColor: '#DCF8C5',
+    backgroundColor: colours.BaseA,
     alignSelf: 'flex-end',
     padding: 10,
     borderRadius: 10,
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   sendButton: {
-    backgroundColor: '#007AFF',
+    backgroundColor: colours.Red,
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 20,
