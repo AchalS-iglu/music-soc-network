@@ -8,7 +8,6 @@ export default function HomeLayout() {
     <View
       style={{
         flex: 1,
-        backgroundColor: colours.BaseA,
         height: '100vh',
         width: '100vw',
         

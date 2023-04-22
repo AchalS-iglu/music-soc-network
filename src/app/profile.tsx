@@ -54,6 +54,7 @@ const ProfilePage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems:'center'
   },
   profileImage: {
     width: 150,
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   bio: {
-    fontSize: 18,
+    fontSize: 15,
     color: '#777',
     marginBottom: 20,
   },
