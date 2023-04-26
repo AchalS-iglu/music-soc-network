@@ -2,6 +2,8 @@ import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { colours } from '../../styles/colours';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import IconIonicons from 'react-native-vector-icons/Ionicons';
+import IconAntDesign from 'react-native-vector-icons/AntDesign';
 
 const Chat = () => {
   return (
@@ -28,20 +30,36 @@ const Chat = () => {
           zIndex: 1,
         }}
       >
-        <Image
+        {/* <Image
           source={require('../../components/common/icons/backChevron.svg')}
           style={{
             height: 36,
             width: 36,
             marginHorizontal: 8,
           }}
+        /> */}
+        <IconIonicons
+          name="chevron-back"
+          size={24}
+          color={colours.GreenDark}
+          style={{
+            marginHorizontal: 8,
+          }}
         />
         {/* <Text> Chat </Text> */}
-        <Image
+        {/* <Image
           source={require('../../components/common/icons/groupAdd.svg')}
           style={{
             height: 36,
             width: 36,
+            marginHorizontal: 8,
+          }}
+        /> */}
+        <IconAntDesign
+          name="addusergroup"
+          size={24}
+          color={colours.GreenDark}
+          style={{
             marginHorizontal: 8,
           }}
         />
@@ -82,11 +100,11 @@ const Chat = () => {
             marginTop: 60,
           }}
         >
-          <Image
-            source={require('../../components/common/icons/search.svg')}
+          <IconIonicons
+            name="search"
+            size={24}
+            color={colours.GreenDark}
             style={{
-              height: 24,
-              width: 24,
               marginHorizontal: 8,
             }}
           />
@@ -226,11 +244,19 @@ const Chat = () => {
                 alignItems: 'center',
               }}
             >
-              <Image
+              {/* <Image
                 source={require('../../components/common/icons/person.svg')}
                 style={{
                   height: 48,
                   width: 48,
+                  marginHorizontal: 16,
+                }}
+              /> */}
+              <IconIonicons
+                name="person"
+                size={24}
+                color={colours.GreenDark}
+                style={{
                   marginHorizontal: 16,
                 }}
               />

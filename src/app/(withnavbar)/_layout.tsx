@@ -3,6 +3,7 @@ import { Image, StyleSheet, View } from 'react-native';
 import { colours } from '../../styles/colours';
 import IconFoundation from 'react-native-vector-icons/Foundation';
 import IconMaterialC from 'react-native-vector-icons/MaterialCommunityIcons';
+import IconIonicons from 'react-native-vector-icons/Ionicons';
 
 export default function HomeLayout() {
   return (
@@ -30,20 +31,26 @@ export default function HomeLayout() {
           />
         </View>
         <View style={navbarStyles.iconContainer}>
-          <Image
-            source={require('../../components/common/icons/search.svg')}
+          <IconIonicons
+            name="search"
+            size={24}
+            color={colours.GreenDark}
             style={navbarStyles.icon}
           />
         </View>
         <View style={navbarStyles.iconContainer}>
-          <Image
-            source={require('../../components/common/icons/barChart.svg')}
+          <IconFoundation
+            name="graph-bar"
+            size={24}
+            color={colours.GreenDark}
             style={navbarStyles.icon}
           />
         </View>
         <View style={navbarStyles.iconContainer}>
-          <Image
-            source={require('../../components/common/icons/person.svg')}
+          <IconIonicons
+            name="person"
+            size={24}
+            color={colours.GreenDark}
             style={navbarStyles.icon}
           />
         </View>

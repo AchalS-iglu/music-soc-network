@@ -1,5 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
+import IconAntDesign from 'react-native-vector-icons/AntDesign';
+import { colours } from '../../styles/colours';
+import IconFoundation from 'react-native-vector-icons/Foundation';
 
 const ProfilePage = () => {
   return (
@@ -9,62 +12,77 @@ const ProfilePage = () => {
           width: '100%',
           justifyContent: 'flex-start',
         }}
-        >
-         <Image
+      >
+        <IconFoundation
+          name="graph-bar"
+          size={24}
+          color={colours.GreenDark}
+          style={{
+            marginHorizontal: 8,
+          }}
+        />
+        <IconAntDesign
+          name="sharealt"
+          size={24}
+          color={colours.GreenDark}
+          style={{
+            marginHorizontal: 8,
+          }}
+        />
+        {/* <Image
           style={{
             height: 32,
             width: 32,
           }}
           source={require('../../components/common/icons/barChart.svg')}
-          />
-          <View
-        style={{
-          width: '100%',
-          justifyContent: 'flex-end',
-        }}
-        >
-           <Image
-           style={{
+          /> */}
+        {/* <Image
+          style={{
             height: 32,
             width: 32,
-           }} 
-           source={require('../../components/common/icons/share.svg')}
-           />
-          </View>
+          }}
+          source={require('../../components/common/icons/share.svg')}
+        /> */}
       </View>
-      <View style={styles.container}>
       <View
         style={{
           width: '100%',
           justifyContent: 'flex-start',
         }}
-        >
-         <Image
+      >
+        {/* <Image
           style={{
             height: 32,
             width: 32,
           }}
           source={require('../../components/common/icons/barChart.svg')}
-      /> 
-          <Image
-        style={styles.profileImage}
-        source={{ uri: 'https://img.icons8.com/ios-glyphs/256/user--v1.png' }}
-      />
-      <Text style={styles.name}>Joe Alwyn</Text>
-      <Text style={styles.bio}>Swiftie</Text>
-      <View style={styles.statsContainer}>
-        <View style={styles.stat}>
-          <Text style={styles.statNumber}>1,000</Text>
-          <Text style={styles.statTitle}>Followers</Text>
-        </View>
-        <View style={styles.stat}>
-          <Text style={styles.statNumber}>500</Text>
-          <Text style={styles.statTitle}>Following</Text>
+        /> */}
+        <IconFoundation
+          name="graph-bar"
+          size={24}
+          color={colours.GreenDark}
+          style={{
+            marginHorizontal: 8,
+          }}
+        />
+        <Image
+          style={styles.profileImage}
+          source={{ uri: 'https://img.icons8.com/ios-glyphs/256/user--v1.png' }}
+        />
+        <Text style={styles.name}>Joe Alwyn</Text>
+        <Text style={styles.bio}>Swiftie</Text>
+        <View style={styles.statsContainer}>
+          <View style={styles.stat}>
+            <Text style={styles.statNumber}>1,000</Text>
+            <Text style={styles.statTitle}>Followers</Text>
+          </View>
+          <View style={styles.stat}>
+            <Text style={styles.statNumber}>500</Text>
+            <Text style={styles.statTitle}>Following</Text>
+          </View>
         </View>
       </View>
     </View>
-   </View>
- </View>
   );
 };
 
