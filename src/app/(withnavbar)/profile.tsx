@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, } from 'react-native';
 
 const ProfilePage = () => {
   return (
@@ -9,17 +9,44 @@ const ProfilePage = () => {
           width: '100%',
           justifyContent: 'flex-start',
         }}
-      >
-        <Image
+        >
+         <Image
           style={{
             height: 32,
             width: 32,
           }}
           source={require('../../components/common/icons/barChart.svg')}
-        />{' '}
+          />
+          <View
+        style={{
+          width: '100%',
+          justifyContent: 'flex-end',
+        }}
+        >
+           <Image
+           style={{
+            height: 32,
+            width: 32,
+           }} 
+           source={require('../../components/common/icons/share.svg')}
+           />
+          </View>
       </View>
-      {'FMWEOIFGMWIOFMWEIOFMIOE'}
-      <Image
+      <View style={styles.container}>
+      <View
+        style={{
+          width: '100%',
+          justifyContent: 'flex-start',
+        }}
+        >
+         <Image
+          style={{
+            height: 32,
+            width: 32,
+          }}
+          source={require('../../components/common/icons/barChart.svg')}
+      /> 
+          <Image
         style={styles.profileImage}
         source={{ uri: 'https://img.icons8.com/ios-glyphs/256/user--v1.png' }}
       />
@@ -36,6 +63,8 @@ const ProfilePage = () => {
         </View>
       </View>
     </View>
+   </View>
+ </View>
   );
 };
 
