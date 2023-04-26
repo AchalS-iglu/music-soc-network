@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 import { colours } from '../styles/colours';
 
+// welcome > login to spotify  > select username > select genre > songs - recommendation > profile
+
 export default function SignIn() {
   console.log('test');
   return (

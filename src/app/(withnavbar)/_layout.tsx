@@ -1,6 +1,8 @@
 import { Slot } from 'expo-router';
 import { Image, StyleSheet, View } from 'react-native';
 import { colours } from '../../styles/colours';
+import IconFoundation from 'react-native-vector-icons/Foundation';
+import IconMaterialC from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function HomeLayout() {
   return (
@@ -12,14 +14,18 @@ export default function HomeLayout() {
       <Slot />
       <View style={navbarStyles.bar}>
         <View style={navbarStyles.iconContainer}>
-          <Image
-            source={require('../../components/common/icons/home.svg')}
+          <IconFoundation
+            name="home"
+            size={24}
+            color={colours.GreenDark}
             style={navbarStyles.icon}
           />
         </View>
         <View style={navbarStyles.iconContainer}>
-          <Image
-            source={require('../../components/common/icons/notifs.svg')}
+          <IconMaterialC
+            name="bell"
+            size={24}
+            color={colours.GreenDark}
             style={navbarStyles.icon}
           />
         </View>
@@ -83,6 +89,7 @@ const navbarStyles = StyleSheet.create({
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    color: 'black',
   },
   icon: {
     width: 24,
