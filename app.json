@@ -20,11 +20,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.achals.musicsocnetwork"
     },
     "web": {
       "favicon": "./src/assets/favicon.png",
       "bundler": "metro"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "72365d93-dd3d-46ac-86e9-46b814a553fd"
+      }
     }
   }
 }

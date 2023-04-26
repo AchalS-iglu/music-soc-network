@@ -1,17 +1,10 @@
-import { Slot, Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Slot } from 'expo-router';
+import { Image, StyleSheet, View } from 'react-native';
 import { colours } from '../../styles/colours';
 
 export default function HomeLayout() {
   return (
-    <View
-      style={{
-        flex: 1,
-        height: '100vh',
-        width: '100vw',
-      }}
-    >
+    <>
       {/* <View style={topbarStyles.bar}>
         <View style={topbarStyles.iconContainer}>booba</View>
         <View style={topbarStyles.iconContainer}>booba right</View>
@@ -49,8 +42,7 @@ export default function HomeLayout() {
           />
         </View>
       </View>
-      <StatusBar style="auto" />
-    </View>
+    </>
   );
 }
 
@@ -69,8 +61,6 @@ const topbarStyles = StyleSheet.create({
     right: 0,
     zIndex: 1,
   },
-  iconContainer: {},
-  icon: {},
 });
 
 const navbarStyles = StyleSheet.create({
@@ -90,7 +80,6 @@ const navbarStyles = StyleSheet.create({
   },
   iconContainer: {
     flex: 1,
-    width: '1/5',
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',

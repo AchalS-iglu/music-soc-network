@@ -18,6 +18,7 @@ const ProfilePage = () => {
           source={require('../../components/common/icons/barChart.svg')}
         />{' '}
       </View>
+      {'FMWEOIFGMWIOFMWEIOFMIOE'}
       <Image
         style={styles.profileImage}
         source={{ uri: 'https://img.icons8.com/ios-glyphs/256/user--v1.png' }}
