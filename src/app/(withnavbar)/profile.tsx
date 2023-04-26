@@ -47,7 +47,8 @@ const ProfilePage = () => {
       <View
         style={{
           width: '100%',
-          justifyContent: 'flex-start',
+          justifyContent: 'center',
+          alignItems: "center"
         }}
       >
         {/* <Image
