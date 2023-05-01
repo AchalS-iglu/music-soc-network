@@ -1,4 +1,5 @@
 import {
+  Image,
   Pressable,
   StyleSheet,
   Text,
@@ -16,6 +17,21 @@ const welcome = () => {
   const router = useRouter();
   return (
     <View style={commonStyles.standardContainer}>
+      {/* <View
+        style={{
+          position: 'absolute',
+          top: 10,
+          left: 10,
+        }}
+      >
+        <Image
+          source={require('../../assets/logo.png')}
+          style={{
+            width: 100,
+            height: 100,
+          }}
+        />
+      </View> */}
       <View
         style={{
           width: '100%',

@@ -1,26 +1,17 @@
 import { Redirect, useRootNavigationState, useRouter } from 'expo-router';
 import { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { commonStyles } from '../styles/common';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function App() {
   const router = useRouter();
   const navigationState = useRootNavigationState();
   useEffect(() => {
     if (!navigationState?.key) return;
-    router.push('/auth/welcome');
+    router.push('/home');
   });
-  return (
-    <View style={styles.container}>
-      <Text>Hello World</Text>
-    </View>
-  );
+  return <View></View>;
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const styles = StyleSheet.create({});

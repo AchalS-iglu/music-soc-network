@@ -1,11 +1,12 @@
-import { Slot } from 'expo-router';
-import { Image, StyleSheet, View } from 'react-native';
+import { Slot, useRouter } from 'expo-router';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { colours } from '../../styles/colours';
 import IconFoundation from 'react-native-vector-icons/Foundation';
 import IconMaterialC from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
 
 export default function HomeLayout() {
+  const router = useRouter();
   return (
     <>
       {/* <View style={topbarStyles.bar}>
@@ -14,46 +15,71 @@ export default function HomeLayout() {
       </View> */}
       <Slot />
       <View style={navbarStyles.bar}>
-        <View style={navbarStyles.iconContainer}>
+        <Pressable
+          onPress={() => {
+            router.push('/home');
+          }}
+          style={navbarStyles.iconContainer}
+        >
           <IconFoundation
             name="home"
-            size={24}
+            size={navbarStyles.icon.height}
             color={colours.GreenDark}
             style={navbarStyles.icon}
           />
-        </View>
-        <View style={navbarStyles.iconContainer}>
+        </Pressable>
+        <Pressable
+          onPress={() => {
+            router.push('/notifications');
+          }}
+          style={navbarStyles.iconContainer}
+        >
           <IconMaterialC
             name="bell"
-            size={24}
+            size={navbarStyles.icon.height}
             color={colours.GreenDark}
             style={navbarStyles.icon}
           />
-        </View>
-        <View style={navbarStyles.iconContainer}>
+        </Pressable>
+        <Pressable
+          onPress={() => {
+            router.push('/search');
+          }}
+          style={navbarStyles.iconContainer}
+        >
           <IconIonicons
             name="search"
-            size={24}
+            size={navbarStyles.icon.height}
             color={colours.GreenDark}
             style={navbarStyles.icon}
           />
-        </View>
-        <View style={navbarStyles.iconContainer}>
+        </Pressable>
+        <Pressable
+          onPress={() => {
+            router.push('/stats');
+          }}
+          style={navbarStyles.iconContainer}
+        >
           <IconFoundation
             name="graph-bar"
-            size={24}
+            size={navbarStyles.icon.height}
             color={colours.GreenDark}
             style={navbarStyles.icon}
           />
-        </View>
-        <View style={navbarStyles.iconContainer}>
+        </Pressable>
+        <Pressable
+          onPress={() => {
+            router.push('/profile');
+          }}
+          style={navbarStyles.iconContainer}
+        >
           <IconIonicons
             name="person"
-            size={24}
+            size={navbarStyles.icon.height}
             color={colours.GreenDark}
             style={navbarStyles.icon}
           />
-        </View>
+        </Pressable>
       </View>
     </>
   );
@@ -83,13 +109,13 @@ const navbarStyles = StyleSheet.create({
     backgroundColor: colours.BaseA,
     alignItems: 'center',
     justifyContent: 'space-between',
-    height: 36,
     width: '100%',
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
     zIndex: 1,
+    paddingVertical: 8,
   },
   iconContainer: {
     flex: 1,
@@ -99,7 +125,7 @@ const navbarStyles = StyleSheet.create({
     color: 'black',
   },
   icon: {
-    width: 24,
-    height: 24,
+    width: 30,
+    height: 30,
   },
 });
