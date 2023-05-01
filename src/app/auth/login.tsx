@@ -5,18 +5,20 @@ import {
   TextInput,
   TouchableHighlight,
 } from 'react-native';
-import { colours } from '../styles/colours';
+import { colours } from '../../styles/colours';
 // antdesign icon
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import React from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useRouter } from 'expo-router';
+import { commonStyles } from '../../styles/common';
 
 // welcome > login to spotify  > select username > select genre > songs - recommendation > profile
 
 export default function LogIn() {
-  console.log('test');
+  const router = useRouter();
   return (
-    <View style={styles.container}>
+    <View style={commonStyles.standardContainer}>
       <View
         style={{
           width: '100%',
@@ -27,7 +29,7 @@ export default function LogIn() {
             fontSize: 32,
             paddingHorizontal: 24,
             fontFamily: 'monospace',
-            color: '#44403C',
+            color: colours.GreenNiceBG,
             fontWeight: '400',
           }}
         >
@@ -42,7 +44,7 @@ export default function LogIn() {
           marginTop: 24,
         }}
         onPress={() => {
-          console.log('test');
+          router.push('/auth/newUser/usernameMusic');
         }}
         underlayColor={'#fff'}
       >
@@ -114,7 +116,7 @@ export default function LogIn() {
           borderRadius: 8,
         }}
         onPress={() => {
-          console.log('test');
+          alert('APPLE MUSIC NOT IMPLEMENTED YET, PLEASE USE SPOTIFY!');
         }}
         underlayColor={'#fff'}
       >
@@ -156,11 +158,4 @@ export default function LogIn() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colours.BaseA,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const styles = StyleSheet.create({});

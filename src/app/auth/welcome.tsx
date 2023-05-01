@@ -8,13 +8,14 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import { colours } from '../styles/colours';
+import { colours } from '../../styles/colours';
 import { useRouter } from 'expo-router';
+import { commonStyles } from '../../styles/common';
 
 const welcome = () => {
   const router = useRouter();
   return (
-    <View style={styles.container}>
+    <View style={commonStyles.standardContainer}>
       <View
         style={{
           width: '100%',
@@ -26,7 +27,7 @@ const welcome = () => {
             paddingHorizontal: 24,
             fontFamily: 'monospace',
             lineHeight: 48,
-            color: '#44403C',
+            color: colours.GreenNiceBG,
             fontWeight: '400',
           }}
         >
@@ -57,8 +58,7 @@ const welcome = () => {
           marginTop: 24,
         }}
         onPress={() => {
-          router.push('/login');
-          console.log('test');
+          router.push('/auth/login');
         }}
         underlayColor={'#D1D1D1'}
       >
@@ -85,11 +85,4 @@ const welcome = () => {
 
 export default welcome;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colours.BaseA,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
+const styles = StyleSheet.create({});
