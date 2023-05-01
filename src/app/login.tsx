@@ -37,26 +37,35 @@ export default function LogIn() {
       <TouchableHighlight
         style={{
           width: '90%',
-          paddingHorizontal: 24,
-          paddingVertical: 12,
-          backgroundColor: '#15803D',
-          borderRadius: 8,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
           alignItems: 'center',
+          borderRadius: 8,
           marginTop: 24,
           marginBottom: 12,
         }}
         onPress={() => {
           console.log('test');
         }}
-        underlayColor={'#0F5F2E'}
+        underlayColor={'#fff'}
       >
-        <React.Fragment>
+        <LinearGradient
+          colors={['#1ed760', '#1db954']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 } /* 0.25, 0.25, 0.75, 0.75 */}
+          style={{
+            width: '100%',
+            paddingHorizontal: 24,
+            paddingVertical: 12,
+            borderRadius: 8,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
           <Text
             style={{
               fontSize: 24,
-              color: '#fff',
+              color: '#191414',
+              fontWeight: '600',
             }}
           >
             SPOTIFY
@@ -64,12 +73,12 @@ export default function LogIn() {
           <IconAntDesign
             name="link"
             size={24}
-            color="#fff"
+            color="#191414"
             style={{
               marginHorizontal: 8,
             }}
           />
-        </React.Fragment>
+        </LinearGradient>
       </TouchableHighlight>
       <TouchableHighlight
         style={{
@@ -101,6 +110,7 @@ export default function LogIn() {
             style={{
               fontSize: 24,
               color: '#fff',
+              fontWeight: '600',
             }}
           >
             APPLE MUSIC
