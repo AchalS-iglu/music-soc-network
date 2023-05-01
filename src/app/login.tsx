@@ -31,7 +31,7 @@ export default function LogIn() {
             fontWeight: '400',
           }}
         >
-          Connect either your Spotify or Apple Music
+          Login with
         </Text>
       </View>
       <TouchableHighlight
@@ -40,7 +40,6 @@ export default function LogIn() {
           alignItems: 'center',
           borderRadius: 8,
           marginTop: 24,
-          marginBottom: 12,
         }}
         onPress={() => {
           console.log('test');
@@ -80,6 +79,34 @@ export default function LogIn() {
           />
         </LinearGradient>
       </TouchableHighlight>
+      <View
+        style={{
+          width: '80%',
+          marginTop: 10,
+          marginBottom: 10,
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <View
+          style={{
+            borderBottomWidth: 1,
+            borderBottomColor: colours.GreenDark,
+            width: '30%',
+            marginHorizontal: 6,
+          }}
+        ></View>
+        <Text>OR</Text>
+        <View
+          style={{
+            borderBottomWidth: 1,
+            borderBottomColor: colours.GreenDark,
+            width: '30%',
+            marginHorizontal: 6,
+          }}
+        ></View>
+      </View>
       <TouchableHighlight
         style={{
           width: '90%',
