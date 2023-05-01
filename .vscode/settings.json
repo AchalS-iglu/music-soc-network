@@ -8,5 +8,12 @@
   "editor.formatOnSaveMode": "file", // required to format on save
   "files.autoSave": "onFocusChange", // optional but recommended
   "vs-code-prettier-eslint.prettierLast": false,
-  "cmake.configureOnOpen": false // set as "true" to run 'prettier' last not first
+  "cmake.configureOnOpen": false, // set as "true" to run 'prettier' last not first
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "package.json": "package-lock.json,.eslintrc.json,.eslintrc.js,.prettierrc,tsconfig.json,.gitignore,firebase.json, *.json, *.config.js, yarn.lock, yarn-error.log",
+    "*.tsx": "$(capture).bloc.ts,$(capture).test.tsx,$(capture).css,$(capture).scss",
+    "firebase.json": ".firebaserc,firestore.rules,firestore.indexes.json,database.rules.json,storage.rules"
+  }
 }
