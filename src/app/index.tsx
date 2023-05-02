@@ -9,7 +9,7 @@ export default function App() {
   const navigationState = useRootNavigationState();
   useEffect(() => {
     if (!navigationState?.key) return;
-    router.push('/home');
+    router.push('/auth/login');
   });
   return <View></View>;
 }
