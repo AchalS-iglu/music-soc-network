@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import { colours } from '../../styles/colours';
 import IconFoundation from 'react-native-vector-icons/Foundation';
@@ -48,7 +48,7 @@ const ProfilePage = () => {
         style={{
           width: '100%',
           justifyContent: 'center',
-          alignItems: "center"
+          alignItems: 'center',
         }}
       >
         {/* <Image
@@ -82,6 +82,54 @@ const ProfilePage = () => {
             <Text style={styles.statTitle}>Following</Text>
           </View>
         </View>
+        <ScrollView
+          style={{
+            flexDirection: 'row',
+            width: '90%',
+            height: 120,
+            marginTop: 24,
+            columnGap: 8,
+            gap: 8,
+          }}
+          horizontal={true}
+        >
+          <Image
+            source={{
+              uri: 'https://i.scdn.co/image/ab67616d0000b27336ab788f78d5026d26a5fe85',
+            }}
+            style={{
+              width: 120,
+              height: 120,
+            }}
+          />
+          <Image
+            source={{
+              uri: 'https://i.scdn.co/image/ab67616d0000b27336ab788f78d5026d26a5fe85',
+            }}
+            style={{
+              width: 120,
+              height: 120,
+            }}
+          />
+          <Image
+            source={{
+              uri: 'https://i.scdn.co/image/ab67616d0000b27336ab788f78d5026d26a5fe85',
+            }}
+            style={{
+              width: 120,
+              height: 120,
+            }}
+          />
+          <Image
+            source={{
+              uri: 'https://i.scdn.co/image/ab67616d0000b27336ab788f78d5026d26a5fe85',
+            }}
+            style={{
+              width: 120,
+              height: 120,
+            }}
+          />
+        </ScrollView>
       </View>
     </View>
   );
