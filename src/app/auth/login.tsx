@@ -37,7 +37,7 @@ export default function LogIn() {
   console.log(accessToken);
 
   const handleLogin = async () => {
-    const redirectUrl = makeRedirectUri({ scheme: 'exp' }) + '/';
+    const redirectUrl = makeRedirectUri({ scheme: 'musicsn' }) + '/';
     const result = await startAsync({
       authUrl: `https://accounts.spotify.com/authorize?response_type=token&client_id=${SPOTIFY_CLIENT_ID}&redirect_uri=${encodeURIComponent(
         redirectUrl
