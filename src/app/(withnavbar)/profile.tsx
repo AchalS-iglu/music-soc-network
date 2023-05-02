@@ -13,22 +13,8 @@ const ProfilePage = () => {
           justifyContent: 'flex-start',
         }}
       >
-        <IconFoundation
-          name="graph-bar"
-          size={24}
-          color={colours.GreenDark}
-          style={{
-            marginHorizontal: 8,
-          }}
-        />
-        <IconAntDesign
-          name="sharealt"
-          size={24}
-          color={colours.GreenDark}
-          style={{
-            marginHorizontal: 8,
-          }}
-        />
+        
+       
         {/* <Image
           style={{
             height: 32,
@@ -58,14 +44,7 @@ const ProfilePage = () => {
           }}
           source={require('../../components/common/icons/barChart.svg')}
         /> */}
-        <IconFoundation
-          name="graph-bar"
-          size={24}
-          color={colours.GreenDark}
-          style={{
-            marginHorizontal: 8,
-          }}
-        />
+       
         <Image
           style={styles.profileImage}
           source={{ uri: 'https://img.icons8.com/ios-glyphs/256/user--v1.png' }}
@@ -82,53 +61,98 @@ const ProfilePage = () => {
             <Text style={styles.statTitle}>Following</Text>
           </View>
         </View>
+        <View style={{
+        width: '90%'
+      }}>
+          <Text style={{fontSize: 15,
+          textAlign:'left',
+          marginTop: 24,
+          marginBottom: 3,
+          fontWeight:'bold',
+          
+          }}>My Playlists </Text>
+           </View>
         <ScrollView
           style={{
             flexDirection: 'row',
             width: '90%',
-            height: 120,
-            marginTop: 24,
             columnGap: 8,
             gap: 8,
           }}
           horizontal={true}
         >
-          <Image
-            source={{
-              uri: 'https://i.scdn.co/image/ab67616d0000b27336ab788f78d5026d26a5fe85',
-            }}
-            style={{
-              width: 120,
-              height: 120,
-            }}
-          />
-          <Image
-            source={{
-              uri: 'https://i.scdn.co/image/ab67616d0000b27336ab788f78d5026d26a5fe85',
-            }}
-            style={{
-              width: 120,
-              height: 120,
-            }}
-          />
-          <Image
-            source={{
-              uri: 'https://i.scdn.co/image/ab67616d0000b27336ab788f78d5026d26a5fe85',
-            }}
-            style={{
-              width: 120,
-              height: 120,
-            }}
-          />
-          <Image
-            source={{
-              uri: 'https://i.scdn.co/image/ab67616d0000b27336ab788f78d5026d26a5fe85',
-            }}
-            style={{
-              width: 120,
-              height: 120,
-            }}
-          />
+          {
+            [ 
+               
+              ...Array(6)
+            ].map(((i) => (
+              <View> 
+              
+                <Image
+                  source={{
+                    uri: 'https://i.scdn.co/image/ab67616d0000b273318443aab3531a0558e79a4d',
+                  }}
+                  style={{
+                    width: 120,
+                    height: 120,
+                    borderRadius: 10,
+                    marginRight: 3,
+                  }}
+                />
+
+                <Text style={{
+                  fontSize:10,
+                }}>Red-Taylor Swift</Text>
+                
+              </View> 
+            )))
+          }
+          
+        </ScrollView>
+        <View style={{
+        width: '90%'
+      }}>
+          <Text style={{fontSize: 15,
+          textAlign:'left',
+          marginTop: 24,
+          marginBottom: 3,
+          fontWeight:'bold',
+          
+          }}>Top Artists </Text>
+           </View>
+        <ScrollView
+          style={{
+            flexDirection: 'row',
+            width: '90%',
+
+            
+            columnGap: 8,
+            gap: 8,
+          }}
+          horizontal={true}
+        >
+          {
+            [
+              ...Array(6)
+            ].map(((i) => (
+              <View>
+                <Image
+                  source={{
+                    uri: 'https://i.scdn.co/image/ab6761610000e5eb5a00969a4698c3132a15fbb0',
+                  }}
+                  style={{
+                    width: 120,
+                    height: 120,
+                    borderRadius: 10,
+                    marginRight: 3,
+                  }}
+                />
+                <Text style={{
+                  fontSize:10,
+                }}>Taylor Swift</Text>
+              </View>
+            )))
+          }
         </ScrollView>
       </View>
     </View>
@@ -141,10 +165,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   profileImage: {
-    width: 150,
-    height: 150,
+    width: 120,
+    height: 120,
     borderRadius: 75,
-    marginBottom: 20,
+    marginBottom: 5,
+    marginTop: 20,
   },
   name: {
     fontSize: 24,
@@ -160,6 +185,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '80%',
+   
   },
   stat: {
     alignItems: 'center',
