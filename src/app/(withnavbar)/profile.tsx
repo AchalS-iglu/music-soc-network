@@ -6,7 +6,9 @@ import IconFoundation from 'react-native-vector-icons/Foundation';
 
 const ProfilePage = () => {
   return (
-    <View style={styles.container}>
+    <ScrollView style={{
+      marginBottom: 24
+      }}>
       <View
         style={{
           width: '100%',
@@ -154,8 +156,48 @@ const ProfilePage = () => {
             )))
           }
         </ScrollView>
+        <ScrollView style={{
+          flexDirection: 'column',
+          width:'90%' 
+        }}>
+          <Text style={{
+            fontSize:15,
+            marginTop:24,
+            fontWeight:'bold',
+        }}>My Songs</Text>
+
+          <Text style={{
+            fontSize:12,
+            marginTop:8,
+          }}>1. I bet you think about me</Text>
+
+          <Text style={{
+            fontSize:12,
+            marginTop:8,
+          }}>2. Karma</Text>
+
+           <Text style={{
+            fontSize:12,
+            marginTop:8,
+          }}>3. Willow</Text>
+
+           <Text style={{
+            fontSize:12,
+            marginTop:8,
+          }}>4. Lavender Haze</Text>
+
+          <Text style={{
+            fontSize:12,
+            marginTop:8,
+          }}>5. Getaway Car</Text>
+
+
+
+
+
+        </ScrollView>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
