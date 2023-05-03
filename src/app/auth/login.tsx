@@ -4,48 +4,76 @@ import {
   View,
   TextInput,
   TouchableHighlight,
+  Linking,
 } from 'react-native';
 import { colours } from '../../styles/colours';
 // antdesign icon
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter, useSearchParams } from 'expo-router';
 import { commonStyles } from '../../styles/common';
 import * as WebBrowser from 'expo-web-browser';
+import { SPOTIFY_CLIENT_ID, apiUrl } from '../../lib/constants';
+import { makeRedirectUri, startAsync } from 'expo-auth-session';
 import {
-  ResponseType,
-  makeRedirectUri,
-  startAsync,
-  useAuthRequest,
-} from 'expo-auth-session';
-import { SPOTIFY_CLIENT_ID } from '../../lib/constats';
+  generateCodeChallenge,
+  generateRandomString,
+  getSearchParamFromURL,
+} from '../../lib/utilities';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
+import { base64encode } from '../../lib/utilities';
 
 // welcome > login to spotify  > select username > select genre > songs - recommendation > profile
 
-WebBrowser.maybeCompleteAuthSession();
-
-// Endpoint
-const discovery = {
-  authorizationEndpoint: 'https://accounts.spotify.com/authorize',
-  tokenEndpoint: 'https://accounts.spotify.com/api/token',
-};
-
 export default function LogIn() {
-  const router = useRouter();
-  const [accessToken, setAccessToken] = useState('');
-  console.log(accessToken);
-
   const handleLogin = async () => {
-    const redirectUrl = makeRedirectUri({ scheme: 'musicsn' }) + '/';
-    const result = await startAsync({
-      authUrl: `https://accounts.spotify.com/authorize?response_type=token&client_id=${SPOTIFY_CLIENT_ID}&redirect_uri=${encodeURIComponent(
-        redirectUrl
-      )}&scope=user-read-email%20playlist-modify-public`,
+    const redirectUri = makeRedirectUri({
+      scheme: 'musicsn',
     });
-    console.log(result);
+
+    let state = generateRandomString(16);
+    const scope = 'user-read-private user-read-email';
+
+    const args = new URLSearchParams({
+      response_type: 'code',
+      client_id: SPOTIFY_CLIENT_ID,
+      scope: scope,
+      redirect_uri: redirectUri,
+      state: state,
+    });
+
+    const authUrl = `https://accounts.spotify.com/authorize?${args}`;
+
+    const result: any = await WebBrowser.openAuthSessionAsync(
+      authUrl,
+      redirectUri
+    );
+
     if (result.type === 'success') {
-      setAccessToken(result.params.access_token);
+      if (!result.url) {
+        return;
+      }
+
+      const code = getSearchParamFromURL(result.url, 'code') ?? '';
+      const state = getSearchParamFromURL(result.url, 'state') ?? '';
+
+      if (state !== state) {
+        throw Error('bruh got hacked');
+      }
+
+      const res = await axios.post(apiUrl + `api/spotifyToken`, null, {
+        params: { code, redirectUri },
+      });
+
+      const data: {
+        access_token: string;
+        expires_in: number;
+        refresh_token: string;
+        scope: string[];
+        token_type: string;
+      } = res.data;
     }
   };
 
@@ -66,7 +94,6 @@ export default function LogIn() {
           }}
         >
           Login with
-          {accessToken}
         </Text>
       </View>
       <TouchableHighlight
@@ -77,7 +104,9 @@ export default function LogIn() {
           marginTop: 24,
         }}
         underlayColor={'#fff'}
-        onPress={handleLogin}
+        onPress={() => {
+          handleLogin();
+        }}
       >
         <LinearGradient
           colors={['#1ed760', '#1db954']}
