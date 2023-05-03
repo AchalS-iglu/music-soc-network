@@ -15,13 +15,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import { colours } from '../../../styles/colours';
 import { useRouter } from 'expo-router';
-import { updateUser } from '../../../lib/firebase/user';
 import { AuthContext } from '../../../lib/auth/context';
 
 const newUser = () => {
   const router = useRouter();
 
-  const { user } = useContext(AuthContext);
+  const { updateUser } = useContext(AuthContext);
 
   const [username, setUsername] = useState<string>('');
   const [err, setErr] = useState<string>('');
@@ -41,16 +40,15 @@ const newUser = () => {
   }, [username]);
 
   const handleSubmit = async () => {
-    if (!user.uid) return;
-    else if (err !== '' || username === '') {
+    if (err !== '' || username === '') {
       alert(
         'Username must be at least 3 characters, less than 20 characters, and not already taken'
       );
     } else {
-      const res = await updateUser(user.uid, { username });
-      if (res) {
-        router.push('/home');
-      }
+      const res = await updateUser({
+        username: username,
+      });
+      router.replace('/home');
     }
   };
 

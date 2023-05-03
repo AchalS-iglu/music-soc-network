@@ -36,7 +36,7 @@ export const getUserWithUsername = async (username: string) => {
     else return res.docs[0].data() as User_t
 }
 
-export const updateUser = async (uid: string, user: Partial<User_t>) => {
+export const updateUserDoc = async (uid: string, user: Partial<User_t>) => {
     const res = await setDoc(
         doc(db, 'Users', uid), {
         ...user,

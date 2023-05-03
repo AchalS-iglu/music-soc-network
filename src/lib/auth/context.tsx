@@ -3,7 +3,11 @@ import * as SecureStore from 'expo-secure-store';
 import { useRouter } from 'expo-router';
 import { User_t } from '../models';
 import { getUserData } from '../spotify/user';
-import { createUser, getUserWithSpotifyID, updateUser } from '../firebase/user';
+import {
+  createUser,
+  getUserWithSpotifyID,
+  updateUserDoc,
+} from '../firebase/user';
 import { randomUUID } from 'expo-crypto';
 import { makeRedirectUri } from 'expo-auth-session';
 import { generateRandomString, getSearchParamFromURL } from '../utilities';
@@ -17,6 +21,7 @@ type AuthContextType = {
   loginWithSpotify: () => Promise<void>;
   logout: () => Promise<void>;
   loading: boolean;
+  updateUser: (data: Partial<User_t>) => Promise<void>;
 };
 
 export const AuthContext = createContext<AuthContextType>({
@@ -25,6 +30,7 @@ export const AuthContext = createContext<AuthContextType>({
   loginWithSpotify: async () => {},
   logout: async () => {},
   loading: false,
+  updateUser: async () => {},
 });
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -49,7 +55,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       if (user.username === 'null') {
         router.replace('/auth/newUser/usernameMusic');
       } else {
-        router.replace('/app');
+        router.replace('/home');
       }
       setLoading(false);
     };
@@ -115,7 +121,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
           if (!user.uid) return;
           user.lastLogin = new Date().getTime();
           user.lastActivity = new Date().getTime();
-          await updateUser(user.uid, {
+          await updateUserDoc(user.uid, {
             lastLogin: user.lastLogin,
             lastActivity: user.lastActivity,
           });
@@ -165,9 +171,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setLoading(false);
   };
 
+  const updateUser = async (data: Partial<User_t>) => {
+    if (!user.uid) return;
+    await updateUserDoc(user.uid, data);
+    setUser({ ...user, ...data });
+    await SecureStore.setItemAsync(
+      'user',
+      JSON.stringify({ ...user, ...data })
+    );
+  };
+
   return (
     <AuthContext.Provider
-      value={{ user, setUser, loginWithSpotify, logout, loading }}
+      value={{ user, setUser, loginWithSpotify, logout, loading, updateUser }}
     >
       {children}
     </AuthContext.Provider>
