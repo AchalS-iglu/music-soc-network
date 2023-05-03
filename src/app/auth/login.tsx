@@ -1,29 +1,10 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableHighlight,
-  Linking,
-} from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import { colours } from '../../styles/colours';
 // antdesign icon
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useRouter, useSearchParams } from 'expo-router';
 import { commonStyles } from '../../styles/common';
-import * as WebBrowser from 'expo-web-browser';
-import { SPOTIFY_CLIENT_ID, apiUrl } from '../../lib/constants';
-import { makeRedirectUri, startAsync } from 'expo-auth-session';
-import {
-  generateCodeChallenge,
-  generateRandomString,
-  getSearchParamFromURL,
-} from '../../lib/utilities';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import axios from 'axios';
-import { base64encode } from '../../lib/utilities';
 import { AuthContext } from '../../lib/auth/context';
 
 // welcome > login to spotify  > select username > select genre > songs - recommendation > profile

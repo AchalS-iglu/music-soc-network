@@ -38,7 +38,10 @@ export const getUserWithUsername = async (username: string) => {
 
 export const updateUser = async (uid: string, user: Partial<User_t>) => {
     const res = await setDoc(
-        doc(db, 'Users', uid), user, { merge: true }
+        doc(db, 'Users', uid), {
+        ...user,
+        updatedAt: new Date().getTime()
+    }, { merge: true }
     ).then(
         () => true
     ).catch((err) => false)

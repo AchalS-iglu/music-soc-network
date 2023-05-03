@@ -1,8 +1,6 @@
-import { Redirect, useRootNavigationState, useRouter } from 'expo-router';
+import { useRootNavigationState, useRouter } from 'expo-router';
 import { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { commonStyles } from '../styles/common';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function App() {
   const router = useRouter();

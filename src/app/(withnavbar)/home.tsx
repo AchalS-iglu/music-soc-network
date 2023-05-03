@@ -1,15 +1,8 @@
-import { Redirect, useRootNavigationState, useRouter } from 'expo-router';
+import { useRootNavigationState, useRouter } from 'expo-router';
 import { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { commonStyles } from '../../styles/common';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colours } from '../../styles/colours';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { TouchableOpacity } from 'react-native';
-
-
-
-npm install react-native-vector-icons --save
 
 export default function App() {
   const router = useRouter();
