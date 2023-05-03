@@ -1,34 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { colours } from '../../styles/colours';
+import { AuthContext } from '../../lib/auth/context';
 
 const ProfilePage = () => {
+  const { user } = useContext(AuthContext);
   return (
-    <ScrollView
+    <View
       style={{
-        marginBottom: 60,
+        paddingVertical: 48,
+        backgroundColor: colours.BaseA,
       }}
     >
-      <View
-        style={{
-          width: '100%',
-          justifyContent: 'flex-start',
-        }}
-      >
-        {/* <Image
-          style={{
-            height: 32,
-            width: 32,
-          }}
-          source={require('../../components/common/icons/barChart.svg')}
-          /> */}
-        {/* <Image
-          style={{
-            height: 32,
-            width: 32,
-          }}
-          source={require('../../components/common/icons/share.svg')}
-        /> */}
-      </View>
       <View
         style={{
           width: '100%',
@@ -36,27 +20,26 @@ const ProfilePage = () => {
           alignItems: 'center',
         }}
       >
-        {/* <Image
-          style={{
-            height: 32,
-            width: 32,
-          }}
-          source={require('../../components/common/icons/barChart.svg')}
-        /> */}
-
         <Image
           style={styles.profileImage}
-          source={{ uri: 'https://img.icons8.com/ios-glyphs/256/user--v1.png' }}
+          source={{
+            uri:
+              user.dp === '' || user.dp
+                ? user.dp
+                : 'https://img.icons8.com/ios-glyphs/256/user--v1.png',
+          }}
         />
-        <Text style={styles.name}>Joe Alwyn</Text>
-        <Text style={styles.bio}>Swiftie</Text>
+        <Text style={styles.name}>{user.username}</Text>
+        <Text style={styles.bio}>
+          {user.bioline === '' || user.bioline ? user.bioline : 'unset'}
+        </Text>
         <View style={styles.statsContainer}>
           <View style={styles.stat}>
-            <Text style={styles.statNumber}>1,000</Text>
+            <Text style={styles.statNumber}>{user.followersCount ?? '0'}</Text>
             <Text style={styles.statTitle}>Followers</Text>
           </View>
           <View style={styles.stat}>
-            <Text style={styles.statNumber}>500</Text>
+            <Text style={styles.statNumber}>{user.followingCount ?? '0'}</Text>
             <Text style={styles.statTitle}>Following</Text>
           </View>
         </View>
@@ -87,7 +70,7 @@ const ProfilePage = () => {
           horizontal={true}
         >
           {[...Array(6)].map((i) => (
-            <View>
+            <View key={i}>
               <Image
                 source={{
                   uri: 'https://i.scdn.co/image/ab67616d0000b273318443aab3531a0558e79a4d',
@@ -138,7 +121,7 @@ const ProfilePage = () => {
           horizontal={true}
         >
           {[...Array(6)].map((i) => (
-            <View>
+            <View key={i}>
               <Image
                 source={{
                   uri: 'https://i.scdn.co/image/ab6761610000e5eb5a00969a4698c3132a15fbb0',
@@ -211,13 +194,14 @@ const ProfilePage = () => {
               album: 'Midnights',
               time: '3:20',
             },
-          ].map((song) => (
+          ].map((song, i) => (
             <View
               style={{
                 flexDirection: 'row',
                 width: '100%',
                 justifyContent: 'space-between',
               }}
+              key={i}
             >
               <View
                 style={{
@@ -287,7 +271,7 @@ const ProfilePage = () => {
           ))}
         </ScrollView>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
