@@ -7,7 +7,7 @@ import IconFoundation from 'react-native-vector-icons/Foundation';
 const ProfilePage = () => {
   return (
     <ScrollView style={{
-      marginBottom: 24
+      marginBottom:60
       }}>
       <View
         style={{
@@ -156,43 +156,110 @@ const ProfilePage = () => {
             )))
           }
         </ScrollView>
-        <ScrollView style={{
-          flexDirection: 'column',
-          width:'90%' 
-        }}>
-          <Text style={{
+        <Text style={{
             fontSize:15,
             marginTop:24,
+            marginLeft:20,
             fontWeight:'bold',
+            alignSelf: 'flex-start'
         }}>My Songs</Text>
 
-          <Text style={{
-            fontSize:12,
-            marginTop:8,
-          }}>1. I bet you think about me</Text>
+        <ScrollView style={{
+          flexDirection: 'column',
+          width:'90%' ,
 
-          <Text style={{
-            fontSize:12,
-            marginTop:8,
-          }}>2. Karma</Text>
+          height: 130,
+        }}
+        horizontal={false}
+        nestedScrollEnabled={true}
+        
+        >{
+          [
+            {
+              name: "Anti Hero",
+              pic: "",
+              artist: "Taylor Swift",
+              album: "Midnights",
+              time: "3:20"
+              },
+            {
+              name: "Karma",
+              pic: "",
+              artist: "Taylor Swift",
+              album: "Midnights",
+              time: "3:20"
+              },
+            {
+              name: "Maroon",
+              pic: "",
+              artist: "Taylor Swift",
+              album: "Midnights",
+              time: "3:20"
+              },
+            {
+              name: "Paris",
+              pic: "",
+              artist: "Taylor Swift",
+              album: "Midnights",
+              time: "3:20"
+              },
+          ].map((song) => 
+            (
+        <View style={{
+          flexDirection:'row',
+          width: "100%",
+          justifyContent: 'space-between'
+        }}>
+          <View style={{
+            flexDirection: 'row'
+          }}>
+          <Image source={{
+            uri:'https://i.scdn.co/image/ab6761610000e5eb5a00969a4698c3132a15fbb0'
+          }}
+          style={{
+            width: 30,
+            height: 30,
+            marginLeft: 3, 
+            marginTop: 10,
+          }}
+          />
 
+           <View>
+            <Text style={{
+              fontSize: 12,
+              marginTop:10,
+              marginLeft:7,
+            }}>{song.name}</Text>
+            <Text style={{
+              fontStyle:'italic',
+              fontSize: 10,
+              marginLeft: 7,
+              color:'grey'
+            }}>{song.artist}</Text>
+           </View>
+            </View>
+
+           <View>
+           <Text style={{
+             fontSize:12,
+           marginTop:17,
+           marginLeft: 70,
+           color:'grey',
+           }}>{song.album}</Text>
+           </View>
+           <View>
            <Text style={{
             fontSize:12,
-            marginTop:8,
-          }}>3. Willow</Text>
+           marginTop:17,
+           marginLeft: 70,
+           color:'grey',
+           }}>{song.time}</Text> 
+           </View>
+            </View>  
 
-           <Text style={{
-            fontSize:12,
-            marginTop:8,
-          }}>4. Lavender Haze</Text>
-
-          <Text style={{
-            fontSize:12,
-            marginTop:8,
-          }}>5. Getaway Car</Text>
-
-
-
+            )
+          )
+        }
 
 
         </ScrollView>
