@@ -53,12 +53,20 @@ const newUser = () => {
   };
 
   return (
-    <SafeAreaView
+    <ScrollView style={{
+      height: '100%',
+      width: '100%',
+      backgroundColor: colours.BaseA
+    }}>
+      
+    <View
       style={{
-        ...commonStyles.standardContainer,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
         paddingVertical: 64,
+        flex: 1,
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
       }}
     >
       <View
@@ -346,7 +354,8 @@ const newUser = () => {
           Submit
         </Text>
       </TouchableHighlight>
-    </SafeAreaView>
+    </View>
+    </ScrollView>
   );
 };
 
