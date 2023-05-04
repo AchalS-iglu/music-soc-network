@@ -1,0 +1,48 @@
+                                           User
+                                             |
+               --------------------------------|---------------------
+               |                               |                     |
+        Register Account                Log In/Log Out            Browse Music
+               |                               |                     |
+        Update Profile                   Connect with              Search Music
+               |                       Other Music Lovers          |
+          Follow User                          |              Play/Listen to Music
+               |                       Discover New Artists         |
+      Create Playlist                          |              Like/Dislike Music
+               |                               |                     |
+          Share Music                      Chat with              Comment on Music
+               |                      Friends and Followers        |
+      Manage Playlists                                             |
+               |                                               Manage Account
+       Delete Playlist                                              |
+               |                                               Delete Account
+               |                                                     |
+               |                                               Music Artist
+               |                                                     |
+               -------------------------------------------------------
+                                        |
+                                     Music Genre
+                                        |
+               --------------------------------|---------------------
+               |                               |                     |
+        Explore Genre               Discover Artists            Search Music
+               |                               |                     |
+     Discover Playlists                     |              Play/Listen to Music
+               |                              |              Like/Dislike Music
+        Follow Curator                        |                     |
+               |                              |               Comment on Music
+          Create Playlist                     |                     |
+               |                              |                     |
+          Share Music                        |                     |
+               |                              |                     |
+      Manage Playlists                                             |
+               |                                                     |
+               |                                               Recommendation System
+               |                                                     |
+               -------------------------------------------------------
+                                        |
+                               Analyze User Data
+                                        |
+                            Recommend Music Tracks
+                                        |
+                        Improve Recommendation Algorithm
