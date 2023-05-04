@@ -20,11 +20,13 @@ export default function App() {
       <TouchableOpacity
         style={{
           backgroundColor: '#ccc',
+          bottom: '50%',
           padding: 10,
           borderRadius: 50,
         }}
         onPress={() => {
           // Do something when the icon is pressed
+          // blehhh
         }}
       >
         <Icon name="rocket" size={30} color="#900" />

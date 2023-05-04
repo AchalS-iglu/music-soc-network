@@ -100,8 +100,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
         const res = await axios.post(apiUrl + `api/spotifyToken`, null, {
           params: { code, redirectUri },
-        });
+        }).catch(
+          (err) => {
+            console.log(`
+            error getting access token: ${err}`);
+          }
+        );
 
+        if (!res) return;
         const data: {
           access_token: string;
           expires_in: number;
@@ -111,6 +117,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         } = res.data;
 
         const userData = await getUserData(data.access_token);
+        if (!userData) {
+          console.log('error getting user data');
+          alert('error getting user data');
+          return;
+        }
         const getRes = await getUserWithSpotifyID(userData.id);
         let user: User_t;
         let newUser: Boolean = false;
