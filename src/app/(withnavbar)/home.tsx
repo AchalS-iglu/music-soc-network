@@ -5,20 +5,30 @@ import { commonStyles } from '../../styles/common';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colours } from '../../styles/colours';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { TouchableOpacity } from 'react-native';
-
-
-
-npm install react-native-vector-icons --save
+import { Animated, TouchableOpacity } from 'react-native';
 
 export default function App() {
   const router = useRouter();
   const navigationState = useRootNavigationState();
   useEffect(() => {
-    if (!navigationState?.key) return;
-    // router.push('/auth/welcome');
-  });
-  return (
+      if (!navigationState?.key) return;
+      // router.push('/auth/welcome');
+    });
+   return (
+     <View style={{ flex: 1,
+     marginBottom: 60 }}>
+      <TouchableOpacity
+        style={{
+          backgroundColor: '#ccc',
+          padding: 10,
+          borderRadius: 50,
+        }}
+        onPress={() => {
+          // Do something when the icon is pressed
+        }}
+      >
+        <Icon name="rocket" size={30} color="#900" />
+      </TouchableOpacity>
     <View
       style={{
         flex: 1,
@@ -44,10 +54,11 @@ export default function App() {
               fontSize: 32,
             }}
           >
-            Testfeafewfaefawfaweffeawfwefawefweaf
+            Welcome bruv
           </Text>
         </View>
       </SafeAreaView>
+    </View>
     </View>
   );
 }
