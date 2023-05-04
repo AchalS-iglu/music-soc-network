@@ -1,11 +1,24 @@
-import React, { useContext } from 'react';
-import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import React, { useContext, useState } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ScrollView,
+  TouchableHighlight,
+  Pressable,
+} from 'react-native';
 import { colours } from '../../styles/colours';
 import { AuthContext } from '../../lib/auth/context';
+import IconEntypo from 'react-native-vector-icons/Entypo';
+import { useRouter } from 'expo-router';
 
 const ProfilePage = () => {
   const { user } = useContext(AuthContext);
+  const router = useRouter();
+
+  const [kebabOpen, setKebabOpen] = useState<boolean>(false);
+
   return (
     <View
       style={{
@@ -20,6 +33,79 @@ const ProfilePage = () => {
           alignItems: 'center',
         }}
       >
+        <TouchableHighlight
+          style={{
+            position: 'absolute',
+            right: 16,
+            top: 0,
+            height: 48,
+            width: 48,
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 50,
+          }}
+          onPress={() => {
+            setKebabOpen(!kebabOpen);
+          }}
+          underlayColor={colours.BaseB}
+          activeOpacity={1}
+        >
+          <IconEntypo
+            name="dots-three-horizontal"
+            size={24}
+            color={colours.GreenDark}
+            style={{}}
+          />
+        </TouchableHighlight>
+        {kebabOpen ? (
+          <View
+            style={{
+              position: 'absolute',
+              right: 32,
+              top: 32,
+              backgroundColor: colours.BaseB,
+              borderRadius: 5,
+              paddingVertical: 16,
+              paddingHorizontal: 16,
+              zIndex: 10,
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderWidth: 1,
+              borderColor: colours.GreenNiceBG,
+            }}
+          >
+            <Pressable
+              onPress={() => {
+                router.push('/editProfile');
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 24,
+                }}
+              >
+                Edit Profile
+              </Text>
+            </Pressable>
+            <View
+              style={{
+                borderBottomColor: colours.GreenNiceBG,
+                borderBottomWidth: 1,
+                width: '80%',
+                marginVertical: 8,
+              }}
+            ></View>
+            <Text
+              style={{
+                fontSize: 24,
+              }}
+            >
+              Settings
+            </Text>
+          </View>
+        ) : (
+          <></>
+        )}
         <Image
           style={styles.profileImage}
           source={{
@@ -300,7 +386,7 @@ const styles = StyleSheet.create({
   statsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '80%',
+    width: '60%',
   },
   stat: {
     alignItems: 'center',
