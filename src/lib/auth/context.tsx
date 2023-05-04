@@ -22,6 +22,7 @@ type AuthContextType = {
   logout: () => Promise<void>;
   loading: boolean;
   updateUser: (data: Partial<User_t>) => Promise<void>;
+  loadUser: () => Promise<void>;
 };
 
 export const AuthContext = createContext<AuthContextType>({
@@ -31,6 +32,7 @@ export const AuthContext = createContext<AuthContextType>({
   logout: async () => {},
   loading: false,
   updateUser: async () => {},
+  loadUser: async () => {},
 });
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -40,28 +42,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
 
-  useEffect(() => {
-    const loadUser = async () => {
-      setLoading(true);
-      const userUnparsed = await SecureStore.getItemAsync('user');
-      const accessToken = await SecureStore.getItemAsync('access-token');
-      const refreshToken = await SecureStore.getItemAsync('refresh-token');
-      if (!userUnparsed || !accessToken || !refreshToken) {
-        router.replace('/auth/welcome');
-        return;
-      }
-      const user = JSON.parse(userUnparsed) as User_t;
-      setUser(user);
-      if (user.username === 'null') {
-        router.replace('/auth/newUser/usernameMusic');
-      } else {
-        router.replace('/home');
-      }
-      setLoading(false);
-    };
-
-    loadUser();
-  }, []);
+  const loadUser = async () => {
+    setLoading(true);
+    const userUnparsed = await SecureStore.getItemAsync('user');
+    const accessToken = await SecureStore.getItemAsync('access-token');
+    const refreshToken = await SecureStore.getItemAsync('refresh-token');
+    if (!userUnparsed || !accessToken || !refreshToken) {
+      router.replace('/auth/welcome');
+      return;
+    }
+    const user = JSON.parse(userUnparsed) as User_t;
+    setUser(user);
+    if (user.username === 'null') {
+      router.replace('/auth/newUser/usernameMusic');
+    } else {
+      router.replace('/home');
+    }
+    setLoading(false);
+  };
 
   const loginWithSpotify = async () => {
     try {
@@ -183,7 +181,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <AuthContext.Provider
-      value={{ user, setUser, loginWithSpotify, logout, loading, updateUser }}
+      value={{
+        user,
+        setUser,
+        loginWithSpotify,
+        logout,
+        loading,
+        updateUser,
+        loadUser,
+      }}
     >
       {children}
     </AuthContext.Provider>

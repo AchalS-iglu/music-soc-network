@@ -117,7 +117,7 @@ const ProfilePage = () => {
         />
         <Text style={styles.name}>{user.username}</Text>
         <Text style={styles.bio}>
-          {user.bioline === '' || user.bioline ? user.bioline : 'unset'}
+          {user.tagline === '' || user.tagline ? user.tagline : 'unset'}
         </Text>
         <View style={styles.statsContainer}>
           <View style={styles.stat}>

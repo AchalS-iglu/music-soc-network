@@ -9,7 +9,7 @@ export type User_t = {
     deletedAt?: number | null,
     lastLogin?: number | null,
     lastActivity?: number | null,
-    bioline?: string,
+    tagline?: string,
     followingCount?: number,
     followersCount?: number,
 }
