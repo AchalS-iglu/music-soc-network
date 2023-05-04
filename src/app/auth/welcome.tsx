@@ -1,13 +1,4 @@
-import {
-  Image,
-  Pressable,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  TouchableHighlightComponent,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import React from 'react';
 import { colours } from '../../styles/colours';
 import { useRouter } from 'expo-router';

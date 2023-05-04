@@ -1,5 +1,5 @@
 import { Slot, useRouter } from 'expo-router';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { colours } from '../../styles/colours';
 import IconFoundation from 'react-native-vector-icons/Foundation';
 import IconMaterialC from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -13,7 +13,17 @@ export default function HomeLayout() {
         <View style={topbarStyles.iconContainer}>booba</View>
         <View style={topbarStyles.iconContainer}>booba right</View>
       </View> */}
-      <Slot />
+      <ScrollView
+        style={{
+          marginBottom: 46,
+          height: '100%',
+          width: '100%',
+          backgroundColor: colours.BaseA,
+        }}
+        nestedScrollEnabled={true}
+      >
+        <Slot />
+      </ScrollView>
       <View style={navbarStyles.bar}>
         <Pressable
           onPress={() => {

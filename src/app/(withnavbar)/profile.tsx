@@ -1,37 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
-import IconAntDesign from 'react-native-vector-icons/AntDesign';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { colours } from '../../styles/colours';
-import IconFoundation from 'react-native-vector-icons/Foundation';
+import { AuthContext } from '../../lib/auth/context';
 
 const ProfilePage = () => {
+  const { user } = useContext(AuthContext);
   return (
-    <ScrollView style={{
-      marginBottom:60
-      }}>
-      <View
-        style={{
-          width: '100%',
-          justifyContent: 'flex-start',
-        }}
-      >
-        
-       
-        {/* <Image
-          style={{
-            height: 32,
-            width: 32,
-          }}
-          source={require('../../components/common/icons/barChart.svg')}
-          /> */}
-        {/* <Image
-          style={{
-            height: 32,
-            width: 32,
-          }}
-          source={require('../../components/common/icons/share.svg')}
-        /> */}
-      </View>
+    <View
+      style={{
+        paddingVertical: 48,
+        backgroundColor: colours.BaseA,
+      }}
+    >
       <View
         style={{
           width: '100%',
@@ -39,41 +20,46 @@ const ProfilePage = () => {
           alignItems: 'center',
         }}
       >
-        {/* <Image
-          style={{
-            height: 32,
-            width: 32,
-          }}
-          source={require('../../components/common/icons/barChart.svg')}
-        /> */}
-       
         <Image
           style={styles.profileImage}
-          source={{ uri: 'https://img.icons8.com/ios-glyphs/256/user--v1.png' }}
+          source={{
+            uri:
+              user.dp === '' || user.dp
+                ? user.dp
+                : 'https://img.icons8.com/ios-glyphs/256/user--v1.png',
+          }}
         />
-        <Text style={styles.name}>Joe Alwyn</Text>
-        <Text style={styles.bio}>Swiftie</Text>
+        <Text style={styles.name}>{user.username}</Text>
+        <Text style={styles.bio}>
+          {user.bioline === '' || user.bioline ? user.bioline : 'unset'}
+        </Text>
         <View style={styles.statsContainer}>
           <View style={styles.stat}>
-            <Text style={styles.statNumber}>1,000</Text>
+            <Text style={styles.statNumber}>{user.followersCount ?? '0'}</Text>
             <Text style={styles.statTitle}>Followers</Text>
           </View>
           <View style={styles.stat}>
-            <Text style={styles.statNumber}>500</Text>
+            <Text style={styles.statNumber}>{user.followingCount ?? '0'}</Text>
             <Text style={styles.statTitle}>Following</Text>
           </View>
         </View>
-        <View style={{
-        width: '90%'
-      }}>
-          <Text style={{fontSize: 15,
-          textAlign:'left',
-          marginTop: 24,
-          marginBottom: 3,
-          fontWeight:'bold',
-          
-          }}>My Playlists </Text>
-           </View>
+        <View
+          style={{
+            width: '90%',
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 15,
+              textAlign: 'left',
+              marginTop: 24,
+              marginBottom: 3,
+              fontWeight: 'bold',
+            }}
+          >
+            My Playlists{' '}
+          </Text>
+        </View>
         <ScrollView
           style={{
             flexDirection: 'row',
@@ -83,188 +69,209 @@ const ProfilePage = () => {
           }}
           horizontal={true}
         >
-          {
-            [ 
-               
-              ...Array(6)
-            ].map(((i) => (
-              <View> 
-              
-                <Image
-                  source={{
-                    uri: 'https://i.scdn.co/image/ab67616d0000b273318443aab3531a0558e79a4d',
-                  }}
-                  style={{
-                    width: 120,
-                    height: 120,
-                    borderRadius: 10,
-                    marginRight: 3,
-                  }}
-                />
+          {[...Array(6)].map((i) => (
+            <View key={i}>
+              <Image
+                source={{
+                  uri: 'https://i.scdn.co/image/ab67616d0000b273318443aab3531a0558e79a4d',
+                }}
+                style={{
+                  width: 120,
+                  height: 120,
+                  borderRadius: 10,
+                  marginRight: 3,
+                }}
+              />
 
-                <Text style={{
-                  fontSize:10,
-                }}>Red-Taylor Swift</Text>
-                
-              </View> 
-            )))
-          }
-          
+              <Text
+                style={{
+                  fontSize: 10,
+                }}
+              >
+                Red-Taylor Swift
+              </Text>
+            </View>
+          ))}
         </ScrollView>
-        <View style={{
-        width: '90%'
-      }}>
-          <Text style={{fontSize: 15,
-          textAlign:'left',
-          marginTop: 24,
-          marginBottom: 3,
-          fontWeight:'bold',
-          
-          }}>Top Artists </Text>
-           </View>
+        <View
+          style={{
+            width: '90%',
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 15,
+              textAlign: 'left',
+              marginTop: 24,
+              marginBottom: 3,
+              fontWeight: 'bold',
+            }}
+          >
+            Top Artists{' '}
+          </Text>
+        </View>
         <ScrollView
           style={{
             flexDirection: 'row',
             width: '90%',
 
-            
             columnGap: 8,
             gap: 8,
           }}
           horizontal={true}
         >
-          {
-            [
-              ...Array(6)
-            ].map(((i) => (
-              <View>
+          {[...Array(6)].map((i) => (
+            <View key={i}>
+              <Image
+                source={{
+                  uri: 'https://i.scdn.co/image/ab6761610000e5eb5a00969a4698c3132a15fbb0',
+                }}
+                style={{
+                  width: 120,
+                  height: 120,
+                  borderRadius: 10,
+                  marginRight: 3,
+                }}
+              />
+              <Text
+                style={{
+                  fontSize: 10,
+                }}
+              >
+                Taylor Swift
+              </Text>
+            </View>
+          ))}
+        </ScrollView>
+        <Text
+          style={{
+            fontSize: 15,
+            marginTop: 24,
+            marginLeft: 20,
+            fontWeight: 'bold',
+            alignSelf: 'flex-start',
+          }}
+        >
+          My Songs
+        </Text>
+
+        <ScrollView
+          style={{
+            flexDirection: 'column',
+            width: '90%',
+
+            height: 130,
+          }}
+          horizontal={false}
+          nestedScrollEnabled={true}
+        >
+          {[
+            {
+              name: 'Anti Hero',
+              pic: '',
+              artist: 'Taylor Swift',
+              album: 'Midnights',
+              time: '3:20',
+            },
+            {
+              name: 'Karma',
+              pic: '',
+              artist: 'Taylor Swift',
+              album: 'Midnights',
+              time: '3:20',
+            },
+            {
+              name: 'Maroon',
+              pic: '',
+              artist: 'Taylor Swift',
+              album: 'Midnights',
+              time: '3:20',
+            },
+            {
+              name: 'Paris',
+              pic: '',
+              artist: 'Taylor Swift',
+              album: 'Midnights',
+              time: '3:20',
+            },
+          ].map((song, i) => (
+            <View
+              style={{
+                flexDirection: 'row',
+                width: '100%',
+                justifyContent: 'space-between',
+              }}
+              key={i}
+            >
+              <View
+                style={{
+                  flexDirection: 'row',
+                }}
+              >
                 <Image
                   source={{
                     uri: 'https://i.scdn.co/image/ab6761610000e5eb5a00969a4698c3132a15fbb0',
                   }}
                   style={{
-                    width: 120,
-                    height: 120,
-                    borderRadius: 10,
-                    marginRight: 3,
+                    width: 30,
+                    height: 30,
+                    marginLeft: 3,
+                    marginTop: 10,
                   }}
                 />
-                <Text style={{
-                  fontSize:10,
-                }}>Taylor Swift</Text>
+
+                <View>
+                  <Text
+                    style={{
+                      fontSize: 12,
+                      marginTop: 10,
+                      marginLeft: 7,
+                    }}
+                  >
+                    {song.name}
+                  </Text>
+                  <Text
+                    style={{
+                      fontStyle: 'italic',
+                      fontSize: 10,
+                      marginLeft: 7,
+                      color: 'grey',
+                    }}
+                  >
+                    {song.artist}
+                  </Text>
+                </View>
               </View>
-            )))
-          }
-        </ScrollView>
-        <Text style={{
-            fontSize:15,
-            marginTop:24,
-            marginLeft:20,
-            fontWeight:'bold',
-            alignSelf: 'flex-start'
-        }}>My Songs</Text>
 
-        <ScrollView style={{
-          flexDirection: 'column',
-          width:'90%' ,
-
-          height: 130,
-        }}
-        horizontal={false}
-        nestedScrollEnabled={true}
-        
-        >{
-          [
-            {
-              name: "Anti Hero",
-              pic: "",
-              artist: "Taylor Swift",
-              album: "Midnights",
-              time: "3:20"
-              },
-            {
-              name: "Karma",
-              pic: "",
-              artist: "Taylor Swift",
-              album: "Midnights",
-              time: "3:20"
-              },
-            {
-              name: "Maroon",
-              pic: "",
-              artist: "Taylor Swift",
-              album: "Midnights",
-              time: "3:20"
-              },
-            {
-              name: "Paris",
-              pic: "",
-              artist: "Taylor Swift",
-              album: "Midnights",
-              time: "3:20"
-              },
-          ].map((song) => 
-            (
-        <View style={{
-          flexDirection:'row',
-          width: "100%",
-          justifyContent: 'space-between'
-        }}>
-          <View style={{
-            flexDirection: 'row'
-          }}>
-          <Image source={{
-            uri:'https://i.scdn.co/image/ab6761610000e5eb5a00969a4698c3132a15fbb0'
-          }}
-          style={{
-            width: 30,
-            height: 30,
-            marginLeft: 3, 
-            marginTop: 10,
-          }}
-          />
-
-           <View>
-            <Text style={{
-              fontSize: 12,
-              marginTop:10,
-              marginLeft:7,
-            }}>{song.name}</Text>
-            <Text style={{
-              fontStyle:'italic',
-              fontSize: 10,
-              marginLeft: 7,
-              color:'grey'
-            }}>{song.artist}</Text>
-           </View>
+              <View>
+                <Text
+                  style={{
+                    fontSize: 12,
+                    marginTop: 17,
+                    marginLeft: 70,
+                    color: 'grey',
+                  }}
+                >
+                  {song.album}
+                </Text>
+              </View>
+              <View>
+                <Text
+                  style={{
+                    fontSize: 12,
+                    marginTop: 17,
+                    marginLeft: 70,
+                    color: 'grey',
+                  }}
+                >
+                  {song.time}
+                </Text>
+              </View>
             </View>
-
-           <View>
-           <Text style={{
-             fontSize:12,
-           marginTop:17,
-           marginLeft: 70,
-           color:'grey',
-           }}>{song.album}</Text>
-           </View>
-           <View>
-           <Text style={{
-            fontSize:12,
-           marginTop:17,
-           marginLeft: 70,
-           color:'grey',
-           }}>{song.time}</Text> 
-           </View>
-            </View>  
-
-            )
-          )
-        }
-
-
+          ))}
         </ScrollView>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
@@ -294,7 +301,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '80%',
-   
   },
   stat: {
     alignItems: 'center',
