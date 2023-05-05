@@ -143,7 +143,7 @@ const ProfilePage = () => {
               fontWeight: 'bold',
             }}
           >
-            My Playlists{' '}
+            Playlists
           </Text>
         </View>
         <ScrollView
@@ -155,11 +155,11 @@ const ProfilePage = () => {
           }}
           horizontal={true}
         >
-          {[...Array(6)].map((i) => (
-            <View key={i}>
+          {user.profilePlaylists?.playlists.map((playlist) => (
+            <View key={playlist.id}>
               <Image
                 source={{
-                  uri: 'https://i.scdn.co/image/ab67616d0000b273318443aab3531a0558e79a4d',
+                  uri: playlist.images[0]?.url ?? 'https://picsum.photos/300',
                 }}
                 style={{
                   width: 120,
@@ -172,9 +172,10 @@ const ProfilePage = () => {
               <Text
                 style={{
                   fontSize: 10,
+                  marginLeft: 8,
                 }}
               >
-                Red-Taylor Swift
+                {playlist.name}
               </Text>
             </View>
           ))}

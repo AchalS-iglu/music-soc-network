@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import * as SecureStore from 'expo-secure-store';
-import { useRouter } from 'expo-router';
+import { useRootNavigationState, useRouter } from 'expo-router';
 import { User_t } from '../models';
 import { getUserData } from '../spotify/user';
 import {
@@ -14,6 +14,7 @@ import { generateRandomString, getSearchParamFromURL } from '../utilities';
 import { SPOTIFY_CLIENT_ID, apiUrl } from '../constants';
 import * as WebBrowser from 'expo-web-browser';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type AuthContextType = {
   user: User_t;
@@ -23,6 +24,7 @@ type AuthContextType = {
   loading: boolean;
   updateUser: (data: Partial<User_t>) => Promise<void>;
   loadUser: () => Promise<void>;
+  accessToken: string | null;
 };
 
 export const AuthContext = createContext<AuthContextType>({
@@ -33,18 +35,21 @@ export const AuthContext = createContext<AuthContextType>({
   loading: false,
   updateUser: async () => {},
   loadUser: async () => {},
+  accessToken: null,
 });
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [user, setUser] = useState<User_t>({});
+  const [accessToken, setAccessToken] = useState<string | null>(null);
+  const [refreshToken, setRefreshToken] = useState<string | null>();
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
 
   const loadUser = async () => {
     setLoading(true);
-    const userUnparsed = await SecureStore.getItemAsync('user');
+    const userUnparsed = await AsyncStorage.getItem('user');
     const accessToken = await SecureStore.getItemAsync('access-token');
     const refreshToken = await SecureStore.getItemAsync('refresh-token');
     if (!userUnparsed || !accessToken || !refreshToken) {
@@ -53,6 +58,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     }
     const user = JSON.parse(userUnparsed) as User_t;
     setUser(user);
+    setAccessToken(accessToken);
     // if (user.username === 'null') {
     //   router.replace('/auth/newUser/usernameMusic');
     // } else {
@@ -61,9 +67,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setLoading(false);
   };
 
-  // useEffect(() => {
-  //   loadUser();
-  // }, []);
+  useEffect(() => {
+    loadUser();
+  }, []);
 
   const loginWithSpotify = async () => {
     try {
@@ -72,7 +78,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       });
 
       let state = generateRandomString(16);
-      const scope = 'user-read-private user-read-email';
+      const scope =
+        'ugc-image-upload user-read-playback-state user-modify-playback-state user-read-currently-playing app-remote-control streaming playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public user-follow-modify user-follow-read user-read-playback-position user-top-read user-read-recently-played user-library-modify user-library-read user-read-email user-read-private';
 
       const args = new URLSearchParams({
         response_type: 'code',
@@ -120,6 +127,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
           token_type: string;
         } = res.data;
 
+        setAccessToken(accessToken);
         const userData = await getUserData(data.access_token);
         if (!userData) {
           console.log('error getting user data');
@@ -155,7 +163,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
           newUser = true;
         }
         setUser(user);
-        await SecureStore.setItemAsync('user', JSON.stringify(user));
+        await AsyncStorage.setItem('user', JSON.stringify(user));
         await SecureStore.setItemAsync('access-token', data.access_token);
         await SecureStore.setItemAsync('refresh-token', data.refresh_token);
         console.log(`
@@ -176,11 +184,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const logout = async () => {
     setLoading(true);
-    await SecureStore.deleteItemAsync('user');
+    await AsyncStorage.removeItem('user');
     await SecureStore.deleteItemAsync('access-token');
     await SecureStore.deleteItemAsync('refresh-token');
     setUser({});
-    router.replace('/auth/welcome');
+    setAccessToken(null);
+    router.replace('/');
     setLoading(false);
   };
 
@@ -188,10 +197,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     if (!user.uid) return;
     await updateUserDoc(user.uid, data);
     setUser({ ...user, ...data });
-    await SecureStore.setItemAsync(
-      'user',
-      JSON.stringify({ ...user, ...data })
-    );
+    await AsyncStorage.setItem('user', JSON.stringify({ ...user, ...data }));
   };
 
   return (
@@ -204,6 +210,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         loading,
         updateUser,
         loadUser,
+        accessToken,
       }}
     >
       {children}

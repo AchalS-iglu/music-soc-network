@@ -14,9 +14,7 @@ export type User_t = {
     followersCount?: number,
     profilePlaylists?: {
         display: boolean,
-        playlists: {
-            [key: string]: Playlist_t
-        }
+        playlists: Playlist_t[]
     }
 }
 
