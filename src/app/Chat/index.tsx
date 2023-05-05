@@ -8,9 +8,7 @@ const Chat = () => {
   return (
     <View
       style={{
-        position: 'relative',
-        height: '100vh',
-        width: '100vw',
+        backgroundColor: colours.BaseA,
       }}
     >
       <View

@@ -61,6 +61,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setLoading(false);
   };
 
+  useEffect(() => {
+    loadUser();
+  }, []);
+
   const loginWithSpotify = async () => {
     try {
       const redirectUri = makeRedirectUri({
@@ -98,14 +102,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
           throw Error('bruh got hacked');
         }
 
-        const res = await axios.post(apiUrl + `api/spotifyToken`, null, {
-          params: { code, redirectUri },
-        }).catch(
-          (err) => {
+        const res = await axios
+          .post(apiUrl + `api/spotifyToken`, null, {
+            params: { code, redirectUri },
+          })
+          .catch((err) => {
             console.log(`
             error getting access token: ${err}`);
-          }
-        );
+          });
 
         if (!res) return;
         const data: {
