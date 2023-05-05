@@ -48,16 +48,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     const accessToken = await SecureStore.getItemAsync('access-token');
     const refreshToken = await SecureStore.getItemAsync('refresh-token');
     if (!userUnparsed || !accessToken || !refreshToken) {
-      router.replace('/auth/welcome');
+      // router.replace('/auth/welcome');
       return;
     }
     const user = JSON.parse(userUnparsed) as User_t;
     setUser(user);
-    if (user.username === 'null') {
-      router.replace('/auth/newUser/usernameMusic');
-    } else {
-      router.replace('/home');
-    }
+    // if (user.username === 'null') {
+    //   router.replace('/auth/newUser/usernameMusic');
+    // } else {
+    //   router.replace('/home');
+    // }
     setLoading(false);
   };
 

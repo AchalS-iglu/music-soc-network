@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Text,
 } from 'react-native';
-import { colours } from '../../styles/colours';
+import { colours } from '../../../styles/colours';
 
 const ChatPage = () => {
   const [messages, setMessages] = useState([

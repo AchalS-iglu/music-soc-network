@@ -1,6 +1,6 @@
 import { Slot, useRouter } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
-import { colours } from '../../styles/colours';
+import { colours } from '../../../styles/colours';
 import IconFoundation from 'react-native-vector-icons/Foundation';
 import IconMaterialC from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconIonicons from 'react-native-vector-icons/Ionicons';

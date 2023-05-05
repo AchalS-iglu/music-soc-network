@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
-import { colours } from '../../styles/colours';
+import { colours } from '../../../styles/colours';
 // antdesign icon
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import React, { useContext } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
-import { commonStyles } from '../../styles/common';
-import { AuthContext } from '../../lib/auth/context';
+import { commonStyles } from '../../../styles/common';
+import { AuthContext } from '../../../lib/auth/context';
 
 // welcome > login to spotify  > select username > select genre > songs - recommendation > profile
 

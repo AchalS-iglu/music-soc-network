@@ -8,12 +8,18 @@ export default function App() {
   const navigationState = useRootNavigationState();
   const { loadUser, user } = useContext(AuthContext);
   useEffect(() => {
-    // if (!navigationState?.key) return;
-    //  router.push('/home');
+    if (!navigationState?.key) return;
     // router.push('/editProfile/playlists');
-    if (user.uid) return;
-    loadUser();
-  }, []);
+    loadUser().then(() => {
+      if (user.uid) {
+        router.replace('/home');
+        return;
+      } else {
+        router.replace('/auth/welcome');
+        return;
+      }
+    });
+  }, [navigationState]);
   return <View></View>;
 }
 

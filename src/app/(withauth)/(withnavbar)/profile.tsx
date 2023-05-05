@@ -8,8 +8,8 @@ import {
   TouchableHighlight,
   Pressable,
 } from 'react-native';
-import { colours } from '../../styles/colours';
-import { AuthContext } from '../../lib/auth/context';
+import { colours } from '../../../styles/colours';
+import { AuthContext } from '../../../lib/auth/context';
 import IconEntypo from 'react-native-vector-icons/Entypo';
 import { useRouter } from 'expo-router';
 

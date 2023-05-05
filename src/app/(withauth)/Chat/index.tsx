@@ -1,6 +1,6 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import { colours } from '../../styles/colours';
+import { colours } from '../../../styles/colours';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 

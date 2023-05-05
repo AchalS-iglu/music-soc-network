@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import { commonStyles } from '../../styles/common';
-import { colours } from '../../styles/colours';
+import { commonStyles } from '../../../styles/common';
+import { colours } from '../../../styles/colours';
 
 const playlists = () => {
   return (

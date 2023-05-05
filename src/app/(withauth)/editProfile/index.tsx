@@ -9,10 +9,10 @@ import {
   View,
 } from 'react-native';
 import React, { useContext, useState } from 'react';
-import { commonStyles } from '../../styles/common';
-import { colours } from '../../styles/colours';
+import { commonStyles } from '../../../styles/common';
+import { colours } from '../../../styles/colours';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
-import { AuthContext } from '../../lib/auth/context';
+import { AuthContext } from '../../../lib/auth/context';
 import { useRouter } from 'expo-router';
 
 const editProfile = () => {

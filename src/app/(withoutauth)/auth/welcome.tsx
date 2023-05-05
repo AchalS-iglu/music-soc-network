@@ -1,8 +1,8 @@
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import React from 'react';
-import { colours } from '../../styles/colours';
+import { colours } from '../../../styles/colours';
 import { useRouter } from 'expo-router';
-import { commonStyles } from '../../styles/common';
+import { commonStyles } from '../../../styles/common';
 
 const welcome = () => {
   const router = useRouter();
