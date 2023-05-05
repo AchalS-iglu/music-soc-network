@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Playlist_t } from '../models';
 
 // get user data
 export const getUserData = async (accessToken: string) => {
@@ -8,7 +9,7 @@ export const getUserData = async (accessToken: string) => {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-  
+
     return res.data as {
       country: string;
       display_name: string;
@@ -33,6 +34,31 @@ export const getUserData = async (accessToken: string) => {
   catch (err) {
     console.log(`
       Error in getUserData: ${err}`);
-      return;
+    return;
+  }
+};
+
+// get user playlists
+export const getUserPlaylists = async (accessToken: string) => {
+  try {
+    let playlists: Playlist_t[] = [];
+    let nextUrl = 'https://api.spotify.com/v1/me/playlists';
+
+    while (nextUrl) {
+      const res = await axios.get(nextUrl, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      playlists = [...playlists, ...res.data.items];
+      nextUrl = res.data.next;
+    }
+
+    return playlists;
+  } catch (err) {
+    console.log(`
+      Error in getUserPlaylists: ${err}`);
+    return;
   }
 };

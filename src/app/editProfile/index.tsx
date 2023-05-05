@@ -9,10 +9,10 @@ import {
   View,
 } from 'react-native';
 import React, { useContext, useState } from 'react';
-import { commonStyles } from '../styles/common';
-import { colours } from '../styles/colours';
+import { commonStyles } from '../../styles/common';
+import { colours } from '../../styles/colours';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
-import { AuthContext } from '../lib/auth/context';
+import { AuthContext } from '../../lib/auth/context';
 import { useRouter } from 'expo-router';
 
 const editProfile = () => {
@@ -105,7 +105,11 @@ const editProfile = () => {
               />
             </View>
             <View style={styles.inputContainer}>
-              <Pressable>
+              <Pressable
+                onPress={() => {
+                  router.push('/editProfile/playlists');
+                }}
+              >
                 <Text
                   style={{
                     ...styles.inputHeading,
@@ -124,7 +128,11 @@ const editProfile = () => {
               />
             </View>
             <View style={styles.inputContainer}>
-              <Pressable>
+              <Pressable
+                onPress={() => {
+                  router.push('/editProfile/artists');
+                }}
+              >
                 <Text
                   style={{
                     ...styles.inputHeading,
@@ -143,7 +151,11 @@ const editProfile = () => {
               />
             </View>
             <View style={styles.inputContainer}>
-              <Pressable>
+              <Pressable
+                onPress={() => {
+                  router.push('/editProfile/songs');
+                }}
+              >
                 <Text
                   style={{
                     ...styles.inputHeading,
