@@ -53,7 +53,8 @@ export default function App() {
         >
          <Text style={{
          fontSize:20,
-         fontWeight:'bold'
+         fontWeight:'bold',
+         paddingBottom: 10
          }}>@kewl_beans</Text>
          <IconIonic
          name='chatbubble-ellipses-outline'
@@ -65,12 +66,38 @@ export default function App() {
          />
         </View>
         <View style={{
+          backgroundColor:'gray',
+          height: 80,
+          width: 200,
+          borderRadius: 20,
+          paddingTop: 8,
+          marginTop: 20,
+        }}>
+          <Text style={{
+            fontSize: 15,
+            fontWeight: 'bold',
+            textAlign: 'center',
+            fontStyle: 'italic',
+          }}>
+            Currently Playing... </Text>
+            
+            <Image source={{
+              uri: 'https://i.pinimg.com/564x/fb/b6/18/fbb6180970c063ca7c3b5135cb347999.jpg',
+            }}
+              style={{
+                width: 50,
+                height: 50, 
+                borderRadius: 90,
+                marginLeft: 8,
+                }}
+              />    
+        </View>
+        <View style={{
           paddingVertical:20,
           paddingHorizontal: 8,
-          borderRadius: 5,
-          borderWidth: 1,
-          marginVertical: 8,
-          borderColor: colours.GreenDark,
+          borderRadius: 10,
+          marginVertical: 30,
+          backgroundColor: 'gray',
         }}>
          <Text style={{
           fontSize:25,
@@ -109,7 +136,7 @@ export default function App() {
         </View>
          <View
           style={{
-            paddingTop:20,
+            paddingTop:0,
 
           }}
         >
@@ -157,7 +184,106 @@ export default function App() {
             </View>
           ))}
         </ScrollView>
+          <View
+          style={{
+            paddingTop:20,
 
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 15,
+              textAlign: 'left',
+              fontWeight: 'bold',
+            }}
+          >
+            Your Top Mixes{' '}
+          </Text>
+        </View>
+        <ScrollView
+          style={{
+            flexDirection: 'row',
+
+            
+            columnGap: 8,
+            gap: 8,
+          }}
+          horizontal={true}
+        >
+          {[...Array(6)].map((i) => (
+            <View key={i}>
+              <Image
+                source={{
+                  uri: 'https://i.pinimg.com/564x/ed/b9/f8/edb9f87e765bdaa4897b4cf8c824cd1e.jpg',
+                }}
+                style={{
+                  width: 120,
+                  height: 120,
+                  borderRadius: 10,
+                  marginRight: 3,
+                }}
+              />
+
+              <Text
+                style={{
+                  fontSize: 10,
+                }}
+              >
+                Indie Mix 
+              </Text>
+            </View>
+          ))}
+        </ScrollView>
+ <View
+          style={{
+            paddingTop:20,
+
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 15,
+              textAlign: 'left',
+              fontWeight: 'bold',
+            }}
+          >
+            Your Playlists{' '}
+          </Text>
+        </View>
+        <ScrollView
+          style={{
+            flexDirection: 'row',
+
+            
+            columnGap: 8,
+            gap: 8,
+          }}
+          horizontal={true}
+        >
+          {[...Array(6)].map((i) => (
+            <View key={i}>
+              <Image
+                source={{
+                  uri: 'https://i.pinimg.com/564x/1c/7f/78/1c7f78218e032927125fd7f4365c3f96.jpg',
+                }}
+                style={{
+                  width: 120,
+                  height: 120,
+                  borderRadius: 10,
+                  marginRight: 3,
+                }}
+              />
+
+              <Text
+                style={{
+                  fontSize: 10,
+                }}
+              >
+                summer'23 
+              </Text>
+            </View>
+          ))}
+        </ScrollView>
       </SafeAreaView>
     </View>
     </View>
