@@ -80,7 +80,7 @@ export default function App() {
               style={{
                 backgroundColor: 'gray',
                 borderRadius: 10,
-                paddingVertical: 8,
+                padding: 8,
                 flex: 1,
                 width: '50%',
                 height: '100%',
@@ -96,7 +96,6 @@ export default function App() {
                   width: 50,
                   height: 50,
                   borderRadius: 50,
-                  marginLeft: 8,
                 }}
               />
               <View
@@ -104,7 +103,6 @@ export default function App() {
                   flexDirection: 'column',
                   justifyContent: 'center',
                   alignItems: 'flex-start',
-                  marginLeft: 8,
                 }}
               >
                 <Text
@@ -118,6 +116,8 @@ export default function App() {
                 <Text
                   style={{
                     fontSize: 18,
+                    fontWeight: 'bold',
+                    marginLeft: 4,
                   }}
                 >
                   Song
@@ -145,69 +145,58 @@ export default function App() {
             >
               <View
                 style={{
-                  flexDirection: 'column',
+                  flexDirection: 'row',
                   justifyContent: 'center',
-                  alignItems: 'flex-start',
+                  alignItems: 'center',
                 }}
               >
-                <Text
+                <Image
+                  source={{
+                    uri: 'https://picsum.photos/300',
+                  }}
                   style={{
-                    fontSize: 12,
-                    fontWeight: '400',
-                    marginLeft: 8,
-                    marginBottom: 4,
+                    width: 50,
+                    height: 50,
+                    borderRadius: 50,
+                  }}
+                />
+                <View
+                  style={{
+                    flexDirection: 'column',
                   }}
                 >
                   <Text
                     style={{
-                      fontWeight: 'bold',
-                    }}
-                  >
-                    User_1{' '}
-                  </Text>
-                  is also listening to
-                </Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                  }}
-                >
-                  <Image
-                    source={{
-                      uri: 'https://picsum.photos/300',
-                    }}
-                    style={{
-                      width: 50,
-                      height: 50,
-                      borderRadius: 50,
-                      marginRight: 3,
-                      marginBottom: 3,
-                    }}
-                  />
-                  <View
-                    style={{
-                      flexDirection: 'column',
+                      fontSize: 12,
+                      fontStyle: 'italic',
                     }}
                   >
                     <Text
                       style={{
-                        fontSize: 16,
                         fontWeight: 'bold',
-                        color: colours.Teal,
-                        marginLeft: 4,
+                        fontStyle: 'italic',
                       }}
                     >
-                      SongSongSong
+                      User_1{' '}
                     </Text>
-                    <Text
-                      style={{
-                        fontSize: 12,
-                      }}
-                    >
-                      Artist
-                    </Text>
-                  </View>
+                    is also listening to
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 18,
+                      fontWeight: 'bold',
+                      marginLeft: 4,
+                    }}
+                  >
+                    SongSongSong
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 12,
+                    }}
+                  >
+                    Artist
+                  </Text>
                 </View>
               </View>
             </View>

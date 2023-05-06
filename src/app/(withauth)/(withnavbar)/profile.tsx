@@ -183,8 +183,9 @@ const ProfilePage = () => {
               onPress={() => {
                 router.push(playlist.external_urls.spotify);
               }}
+              key={playlist.id}
             >
-              <View key={playlist.id}>
+              <View>
                 <Image
                   source={{
                     uri: playlist.images[0]?.url ?? 'https://picsum.photos/300',
