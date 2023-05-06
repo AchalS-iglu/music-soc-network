@@ -15,9 +15,9 @@ export default function App() {
   const router = useRouter();
   const navigationState = useRootNavigationState();
   const { loadUser, user, loading } = useContext(AuthContext);
-  useEffect(() => {
-    loadUser();
-  }, []);
+  // useEffect(() => {
+  //   loadUser();
+  // }, []);
 
   return (
     <View style={commonStyles.standardContainer}>
