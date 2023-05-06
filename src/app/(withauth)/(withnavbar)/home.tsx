@@ -120,7 +120,7 @@ export default function App() {
                     marginLeft: 4,
                   }}
                 >
-                  Song
+                  SongSongSong
                 </Text>
                 <Text
                   style={{
