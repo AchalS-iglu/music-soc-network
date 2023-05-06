@@ -66,7 +66,7 @@ export default function App() {
               size={24}
               color={colours.GreenDark}
               onPress={() => {
-                router.push('/Chat');
+                router.push('/chat');
               }}
             />
           </View>
