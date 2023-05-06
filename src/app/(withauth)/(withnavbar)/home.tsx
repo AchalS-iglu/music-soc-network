@@ -1,15 +1,19 @@
 import { useRootNavigationState, useRouter } from 'expo-router';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colours } from '../../../styles/colours';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import IconIonic from 'react-native-vector-icons/Ionicons';
 import { ScrollView } from 'react-native';
+import { AuthContext } from '../../../lib/auth/context';
 
 export default function App() {
   const router = useRouter();
   const navigationState = useRootNavigationState();
+
+  const { user } = useContext(AuthContext);
+
   useEffect(() => {
     if (!navigationState?.key) return;
     // router.push('/auth/welcome');
@@ -55,7 +59,7 @@ export default function App() {
                 paddingBottom: 10,
               }}
             >
-              @kewl_beans
+              @{user.username}
             </Text>
             <IconIonic
               name="chatbubble-ellipses-outline"
@@ -68,43 +72,153 @@ export default function App() {
           </View>
           <View
             style={{
-              backgroundColor: 'gray',
-              height: 80,
-              width: 200,
-              borderRadius: 20,
-              paddingTop: 8,
-              marginTop: 20,
+              flexDirection: 'row',
+              gap: 4,
             }}
           >
-            <Text
+            <View
               style={{
-                fontSize: 15,
-                fontWeight: 'bold',
-                textAlign: 'center',
-                fontStyle: 'italic',
+                backgroundColor: 'gray',
+                borderRadius: 10,
+                paddingVertical: 8,
+                flex: 1,
+                width: '50%',
+                height: '100%',
+                flexDirection: 'row',
+                alignItems: 'center',
               }}
             >
-              Currently Playing...{' '}
-            </Text>
-
-            <Image
-              source={{
-                uri: 'https://i.pinimg.com/564x/fb/b6/18/fbb6180970c063ca7c3b5135cb347999.jpg',
-              }}
+              <Image
+                source={{
+                  uri: 'https://i.pinimg.com/564x/fb/b6/18/fbb6180970c063ca7c3b5135cb347999.jpg',
+                }}
+                style={{
+                  width: 50,
+                  height: 50,
+                  borderRadius: 50,
+                  marginLeft: 8,
+                }}
+              />
+              <View
+                style={{
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'flex-start',
+                  marginLeft: 8,
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: 12,
+                    fontStyle: 'italic',
+                  }}
+                >
+                  Currently Playing...{' '}
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 18,
+                  }}
+                >
+                  Song
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 12,
+                  }}
+                >
+                  Artist
+                </Text>
+              </View>
+            </View>
+            <View
               style={{
-                width: 50,
-                height: 50,
-                borderRadius: 90,
-                marginLeft: 8,
+                backgroundColor: 'gray',
+                borderRadius: 10,
+                padding: 8,
+                flex: 1,
+                flexDirection: 'row',
+                marginBottom: 12,
+                width: '50%',
+                height: '100%',
               }}
-            />
+            >
+              <View
+                style={{
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'flex-start',
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: 12,
+                    fontWeight: '400',
+                    marginLeft: 8,
+                    marginBottom: 4,
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    User_1{' '}
+                  </Text>
+                  is also listening to
+                </Text>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Image
+                    source={{
+                      uri: 'https://picsum.photos/300',
+                    }}
+                    style={{
+                      width: 50,
+                      height: 50,
+                      borderRadius: 50,
+                      marginRight: 3,
+                      marginBottom: 3,
+                    }}
+                  />
+                  <View
+                    style={{
+                      flexDirection: 'column',
+                    }}
+                  >
+                    <Text
+                      style={{
+                        fontSize: 16,
+                        fontWeight: 'bold',
+                        color: colours.Teal,
+                        marginLeft: 4,
+                      }}
+                    >
+                      SongSongSong
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: 12,
+                      }}
+                    >
+                      Artist
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
           </View>
+
           <View
             style={{
               paddingVertical: 20,
-              paddingHorizontal: 8,
+              paddingHorizontal: 16,
               borderRadius: 10,
-              marginVertical: 30,
+              marginVertical: 12,
               backgroundColor: 'gray',
             }}
           >

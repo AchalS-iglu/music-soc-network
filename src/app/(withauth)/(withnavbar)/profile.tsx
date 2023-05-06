@@ -179,28 +179,34 @@ const ProfilePage = () => {
           horizontal={true}
         >
           {user.profilePlaylists?.playlists.map((playlist) => (
-            <View key={playlist.id}>
-              <Image
-                source={{
-                  uri: playlist.images[0]?.url ?? 'https://picsum.photos/300',
-                }}
-                style={{
-                  width: 120,
-                  height: 120,
-                  borderRadius: 10,
-                  marginRight: 3,
-                }}
-              />
+            <Pressable
+              onPress={() => {
+                router.push(playlist.external_urls.spotify);
+              }}
+            >
+              <View key={playlist.id}>
+                <Image
+                  source={{
+                    uri: playlist.images[0]?.url ?? 'https://picsum.photos/300',
+                  }}
+                  style={{
+                    width: 120,
+                    height: 120,
+                    borderRadius: 10,
+                    marginRight: 3,
+                  }}
+                />
 
-              <Text
-                style={{
-                  fontSize: 10,
-                  marginLeft: 8,
-                }}
-              >
-                {playlist.name}
-              </Text>
-            </View>
+                <Text
+                  style={{
+                    fontSize: 10,
+                    marginLeft: 8,
+                  }}
+                >
+                  {playlist.name}
+                </Text>
+              </View>
+            </Pressable>
           ))}
         </ScrollView>
         <View
