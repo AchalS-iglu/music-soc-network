@@ -5,7 +5,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { colours } from '../../../styles/colours';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import IconIonic from 'react-native-vector-icons/Ionicons';
-import { TouchableOpacity } from 'react-native';
 import { ScrollView } from 'react-native';
 
 export default function App() {
