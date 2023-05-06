@@ -14,7 +14,7 @@ import IconEntypo from 'react-native-vector-icons/Entypo';
 import { useRouter } from 'expo-router';
 
 const ProfilePage = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   const router = useRouter();
 
   const [kebabOpen, setKebabOpen] = useState<boolean>(false);
@@ -95,13 +95,36 @@ const ProfilePage = () => {
                 marginVertical: 8,
               }}
             ></View>
-            <Text
-              style={{
-                fontSize: 24,
+            <Pressable
+              onPress={() => {
+                router.push('/settings');
               }}
             >
-              Settings
-            </Text>
+              <Text
+                style={{
+                  fontSize: 24,
+                }}
+              >
+                Settings
+              </Text>
+            </Pressable>
+            <View
+              style={{
+                borderBottomColor: colours.GreenNiceBG,
+                borderBottomWidth: 1,
+                width: '80%',
+                marginVertical: 8,
+              }}
+            ></View>
+            <Pressable onPress={logout}>
+              <Text
+                style={{
+                  fontSize: 24,
+                }}
+              >
+                Logout
+              </Text>
+            </Pressable>
           </View>
         ) : (
           <></>
@@ -377,7 +400,6 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 10,
   },
   bio: {
     fontSize: 15,
