@@ -15,6 +15,7 @@ import { SPOTIFY_CLIENT_ID, apiUrl } from '../constants';
 import * as WebBrowser from 'expo-web-browser';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ActivityIndicator, View } from 'react-native';
 
 type AuthContextType = {
   user: User_t;
@@ -54,6 +55,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     const refreshToken = await SecureStore.getItemAsync('refresh-token');
     if (!userUnparsed || !accessToken || !refreshToken) {
       // router.replace('/auth/welcome');
+      setLoading(false);
       return;
     }
     const user = JSON.parse(userUnparsed) as User_t;
@@ -72,6 +74,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   }, []);
 
   const loginWithSpotify = async () => {
+    setLoading(true);
     try {
       const redirectUri = makeRedirectUri({
         scheme: 'musicsn',
@@ -97,8 +100,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       );
 
       if (result.type === 'success') {
-        setLoading(true);
         if (!result.url) {
+          setLoading(false);
           return;
         }
 
@@ -118,7 +121,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
             error getting access token: ${err}`);
           });
 
-        if (!res) return;
+        if (!res) {
+          setLoading(false);
+          return;
+        }
         const data: {
           access_token: string;
           expires_in: number;
@@ -132,6 +138,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         if (!userData) {
           console.log('error getting user data');
           alert('error getting user data');
+          setLoading(false);
           return;
         }
         const getRes = await getUserWithSpotifyID(userData.id);
@@ -175,9 +182,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         } else {
           router.replace('/home');
         }
+        setLoading(false);
       }
     } catch (err) {
       console.error(err);
+      setLoading(false);
     }
     setLoading(false);
   };
