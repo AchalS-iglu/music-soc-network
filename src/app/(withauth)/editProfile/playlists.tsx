@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   FlatList,
   Image,
   ScrollView,
@@ -127,9 +128,16 @@ const playlists = () => {
               alignItems: 'center',
             }}
           >
+            <ActivityIndicator
+              size={'large'}
+              color={colours.GreenDark}
+              style={{
+                marginBottom: 8,
+              }}
+            />
             <Text
               style={{
-                fontSize: 24,
+                fontSize: 16,
                 fontWeight: 'bold',
                 color: colours.GreenDark,
               }}

@@ -395,15 +395,16 @@ const styles = StyleSheet.create({
     height: 120,
     borderRadius: 75,
     marginBottom: 5,
-    marginTop: 20,
+    marginTop: 60,
   },
   name: {
     fontSize: 24,
     fontWeight: 'bold',
+    color: colours.GreenDark,
   },
   bio: {
     fontSize: 15,
-    color: '#777',
+    color: colours.GreenNiceBG,
     marginBottom: 20,
   },
   statsContainer: {
@@ -417,10 +418,11 @@ const styles = StyleSheet.create({
   statNumber: {
     fontSize: 20,
     fontWeight: 'bold',
+    color: colours.GreenDark,
   },
   statTitle: {
     fontSize: 16,
-    color: '#777',
+    color: colours.GreenNiceBG,
   },
 });
 
