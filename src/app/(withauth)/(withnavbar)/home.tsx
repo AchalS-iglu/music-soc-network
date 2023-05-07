@@ -43,12 +43,12 @@ export default function App() {
       >
         <SafeAreaView
           style={{
-            paddingHorizontal: 17,
+            paddingHorizontal: 16,
           }}
         >
           <View
             style={{
-              marginTop: 20,
+              marginTop: 12,
               justifyContent: 'space-between',
               alignItems: 'center',
               flexDirection: 'row',

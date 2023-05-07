@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { colours } from '../styles/colours';
 import { commonStyles } from '../styles/common';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function App() {
   const router = useRouter();
@@ -63,13 +64,12 @@ export default function App() {
               style={{
                 fontSize: 64,
                 paddingHorizontal: 24,
-                fontFamily: 'monospace',
                 fontWeight: '500',
                 lineHeight: 70,
                 color: colours.GreenDark,
               }}
             >
-              BRUH
+              TuneTies
             </Text>
           </View>
           <TouchableHighlight
@@ -81,7 +81,8 @@ export default function App() {
               borderRadius: 8,
               flexDirection: 'row',
               justifyContent: 'space-between',
-              marginTop: 24,
+              alignItems: 'center',
+              marginTop: 12,
             }}
             onPress={() => {
               router.push('/auth/login');
@@ -96,13 +97,7 @@ export default function App() {
               >
                 Let's Get Started
               </Text>
-              <Text
-                style={{
-                  fontSize: 24,
-                }}
-              >
-                {' //>'}
-              </Text>
+              <Icon name="chevron-right" size={18} color={colours.GreenDark} />
             </Fragment>
           </TouchableHighlight>
         </>
