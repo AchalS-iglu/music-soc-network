@@ -11,13 +11,13 @@ const Layout = () => {
 
   return (
     <AuthProvider>
-      {loading ? (
+      {/* {loading ? (
         <View>
           <Text>Loading...</Text>
         </View>
       ) : (
-        <Slot />
-      )}
+      )} */}
+      <Slot />
     </AuthProvider>
   );
 };

@@ -1,33 +1,37 @@
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import {
+  Image,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import React from 'react';
-import { colours } from '../../styles/colours';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { colours } from '../../../styles/colours';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
+import { useRouter } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Chat = () => {
+  const router = useRouter();
   return (
-    <View
+    <SafeAreaView
       style={{
-        position: 'relative',
-        height: '100vh',
-        width: '100vw',
+        backgroundColor: colours.BaseA,
       }}
     >
       <View
         style={{
-          height: 48,
           width: '100%',
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between',
           borderBottomWidth: 1,
           borderBottomColor: colours.GreenNice,
-          position: 'absolute',
-          top: 0,
-          left: 0,
           backgroundColor: colours.BaseA,
           zIndex: 1,
+          paddingVertical: 12,
         }}
       >
         {/* <Image
@@ -44,6 +48,9 @@ const Chat = () => {
           color={colours.GreenDark}
           style={{
             marginHorizontal: 8,
+          }}
+          onPress={() => {
+            router.back();
           }}
         />
         {/* <Text> Chat </Text> */}
@@ -97,7 +104,8 @@ const Chat = () => {
             borderRadius: 8,
             borderWidth: 1,
             backgroundColor: colours.BaseB,
-            marginTop: 60,
+            marginTop: 12,
+            marginBottom: 12,
           }}
         >
           <IconIonicons
@@ -226,8 +234,8 @@ const Chat = () => {
             message: 'Hello',
             time: '12:00',
           },
-        ].map(({ name, message, time }) => (
-          <View
+        ].map(({ name, message, time }, i) => (
+          <Pressable
             style={{
               width: '100%',
               flexDirection: 'row',
@@ -237,11 +245,16 @@ const Chat = () => {
               borderBottomWidth: 1,
               borderBottomColor: colours.GreenNice,
             }}
+            key={i}
+            onPress={() => {
+              router.push('/chat/chatpage');
+            }}
           >
             <View
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
+                borderRadius: 50,
               }}
             >
               {/* <Image
@@ -252,12 +265,15 @@ const Chat = () => {
                   marginHorizontal: 16,
                 }}
               /> */}
-              <IconIonicons
-                name="person"
-                size={24}
-                color={colours.GreenDark}
+              <Image
+                source={{
+                  uri: 'https://picsum.photos/300',
+                }}
                 style={{
+                  height: 48,
+                  width: 48,
                   marginHorizontal: 16,
+                  borderRadius: 50,
                 }}
               />
               <View>
@@ -289,10 +305,10 @@ const Chat = () => {
             >
               {time}
             </Text>
-          </View>
+          </Pressable>
         ))}
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 

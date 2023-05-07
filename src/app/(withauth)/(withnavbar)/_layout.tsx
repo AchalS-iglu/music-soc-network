@@ -1,6 +1,6 @@
 import { Slot, useRouter } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
-import { colours } from '../../styles/colours';
+import { colours } from '../../../styles/colours';
 import IconFoundation from 'react-native-vector-icons/Foundation';
 import IconMaterialC from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
@@ -53,12 +53,12 @@ export default function HomeLayout() {
         </Pressable>
         <Pressable
           onPress={() => {
-            router.push('/search');
+            router.push('/chat');
           }}
           style={navbarStyles.iconContainer}
         >
           <IconIonicons
-            name="search"
+            name="chatbubble-ellipses-sharp"
             size={navbarStyles.icon.height}
             color={colours.GreenDark}
             style={navbarStyles.icon}

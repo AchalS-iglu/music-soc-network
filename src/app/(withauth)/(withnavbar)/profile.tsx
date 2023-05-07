@@ -8,13 +8,13 @@ import {
   TouchableHighlight,
   Pressable,
 } from 'react-native';
-import { colours } from '../../styles/colours';
-import { AuthContext } from '../../lib/auth/context';
+import { colours } from '../../../styles/colours';
+import { AuthContext } from '../../../lib/auth/context';
 import IconEntypo from 'react-native-vector-icons/Entypo';
 import { useRouter } from 'expo-router';
 
 const ProfilePage = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   const router = useRouter();
 
   const [kebabOpen, setKebabOpen] = useState<boolean>(false);
@@ -95,13 +95,36 @@ const ProfilePage = () => {
                 marginVertical: 8,
               }}
             ></View>
-            <Text
-              style={{
-                fontSize: 24,
+            <Pressable
+              onPress={() => {
+                router.push('/settings');
               }}
             >
-              Settings
-            </Text>
+              <Text
+                style={{
+                  fontSize: 24,
+                }}
+              >
+                Settings
+              </Text>
+            </Pressable>
+            <View
+              style={{
+                borderBottomColor: colours.GreenNiceBG,
+                borderBottomWidth: 1,
+                width: '80%',
+                marginVertical: 8,
+              }}
+            ></View>
+            <Pressable onPress={logout}>
+              <Text
+                style={{
+                  fontSize: 24,
+                }}
+              >
+                Logout
+              </Text>
+            </Pressable>
           </View>
         ) : (
           <></>
@@ -121,11 +144,13 @@ const ProfilePage = () => {
         </Text>
         <View style={styles.statsContainer}>
           <View style={styles.stat}>
-            <Text style={styles.statNumber}>{user.followersCount ?? '0'}</Text>
+            {/* <Text style={styles.statNumber}>{user.followersCount ?? '0'}</Text> */}
+            <Text style={styles.statNumber}>20</Text>
             <Text style={styles.statTitle}>Followers</Text>
           </View>
           <View style={styles.stat}>
-            <Text style={styles.statNumber}>{user.followingCount ?? '0'}</Text>
+            {/* <Text style={styles.statNumber}>{user.followingCount ?? '0'}</Text> */}
+            <Text style={styles.statNumber}>30</Text>
             <Text style={styles.statTitle}>Following</Text>
           </View>
         </View>
@@ -143,7 +168,7 @@ const ProfilePage = () => {
               fontWeight: 'bold',
             }}
           >
-            My Playlists{' '}
+            Playlists
           </Text>
         </View>
         <ScrollView
@@ -155,28 +180,36 @@ const ProfilePage = () => {
           }}
           horizontal={true}
         >
-          {[...Array(6)].map((i) => (
-            <View key={i}>
-              <Image
-                source={{
-                  uri: 'https://i.scdn.co/image/ab67616d0000b273318443aab3531a0558e79a4d',
-                }}
-                style={{
-                  width: 120,
-                  height: 120,
-                  borderRadius: 10,
-                  marginRight: 3,
-                }}
-              />
+          {user.profilePlaylists?.playlists.map((playlist) => (
+            <Pressable
+              onPress={() => {
+                router.push(playlist.external_urls.spotify);
+              }}
+              key={playlist.id}
+            >
+              <View>
+                <Image
+                  source={{
+                    uri: playlist.images[0]?.url ?? 'https://picsum.photos/300',
+                  }}
+                  style={{
+                    width: 120,
+                    height: 120,
+                    borderRadius: 10,
+                    marginRight: 3,
+                  }}
+                />
 
-              <Text
-                style={{
-                  fontSize: 10,
-                }}
-              >
-                Red-Taylor Swift
-              </Text>
-            </View>
+                <Text
+                  style={{
+                    fontSize: 10,
+                    marginLeft: 8,
+                  }}
+                >
+                  {playlist.name}
+                </Text>
+              </View>
+            </Pressable>
           ))}
         </ScrollView>
         <View
@@ -321,7 +354,7 @@ const ProfilePage = () => {
                       fontStyle: 'italic',
                       fontSize: 10,
                       marginLeft: 7,
-                      color: 'grey',
+                      color: colours.BeigeDark,
                     }}
                   >
                     {song.artist}
@@ -335,7 +368,7 @@ const ProfilePage = () => {
                     fontSize: 12,
                     marginTop: 17,
                     marginLeft: 70,
-                    color: 'grey',
+                    color: colours.BeigeDark,
                   }}
                 >
                   {song.album}
@@ -347,7 +380,7 @@ const ProfilePage = () => {
                     fontSize: 12,
                     marginTop: 17,
                     marginLeft: 70,
-                    color: 'grey',
+                    color: colours.BeigeDark,
                   }}
                 >
                   {song.time}
@@ -371,16 +404,16 @@ const styles = StyleSheet.create({
     height: 120,
     borderRadius: 75,
     marginBottom: 5,
-    marginTop: 20,
+    marginTop: 60,
   },
   name: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 10,
+    color: colours.GreenDark,
   },
   bio: {
     fontSize: 15,
-    color: '#777',
+    color: colours.GreenNiceBG,
     marginBottom: 20,
   },
   statsContainer: {
@@ -394,10 +427,11 @@ const styles = StyleSheet.create({
   statNumber: {
     fontSize: 20,
     fontWeight: 'bold',
+    color: colours.GreenDark,
   },
   statTitle: {
     fontSize: 16,
-    color: '#777',
+    color: colours.GreenNiceBG,
   },
 });
 
