@@ -16,10 +16,10 @@ import { useRouter } from 'expo-router';
 const ChatPage = () => {
   const router = useRouter();
   const [messages, setMessages] = useState([
-    { id: 1, text: 'Hi!', user: 'me' },
-    { id: 2, text: "Hey, what's up?", user: 'other' },
-    { id: 3, text: 'Not much, you?', user: 'me' },
-    { id: 4, text: 'Same here', user: 'other' },
+    { id: 1, text: 'same here', user: 'me' },
+    { id: 2, text: "Me chilling, you?", user: 'other' },
+    { id: 3, text: 'Wassup bruv?', user: 'me' },
+    { id: 4, text: 'Helloo!', user: 'other' },
   ]);
   const [text, setText] = useState('');
 
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   myMessageContainer: {
-    backgroundColor: colours.GreenWeird,
+    backgroundColor: colours.BeigeDark,
     alignSelf: 'flex-end',
     padding: 10,
     borderRadius: 10,
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     flexDirection: 'row',
-    backgroundColor: colours.GreenNiceBG,
+
     padding: 10,
     borderRadius: 10,
     alignItems: 'center',
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   sendButton: {
-    backgroundColor: colours.RustyOrange,
+    backgroundColor: colours.OliveGreen,
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 20,

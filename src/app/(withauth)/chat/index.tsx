@@ -102,8 +102,8 @@ const Chat = () => {
             alignItems: 'center',
             marginHorizontal: 16,
             borderRadius: 8,
-            borderWidth: 1,
-            backgroundColor: colours.BaseB,
+            
+            backgroundColor: '#d5d5d5',
             marginTop: 12,
             marginBottom: 12,
           }}
@@ -116,121 +116,124 @@ const Chat = () => {
               marginHorizontal: 8,
             }}
           />
-          <Text> Search </Text>
+          <Text style={{
+            fontStyle:'italic'
+          }}
+          > Search for friends</Text>
         </View>
         {[
           {
             name: 'John',
             message: 'Hello',
+            time: '17:00',
+          },
+          {
+            name: 'Ava',
+            message: 'Hey',
+            time: '15:30',
+          },
+          {
+            name: 'Lucas',
+            message: 'Hi there!',
+            time: '11:24',
+          },
+          {
+            name: 'Olivia',
+            message: 'How you doin?',
+            time: '18:50',
+          },
+          {
+            name: 'Elijah',
+            message: 'Did you listen to that song?',
+            time: '05:20',
+          },
+          {
+            name: 'Isabella',
+            message: 'Bro listen to All too Well',
+            time: '17:44',
+          },
+          {
+            name: 'Ethan',
+            message: 'bruv',
+            time: '19:23',
+          },
+          {
+            name: 'Sofia',
+            message: 'join the group session',
+            time: '02:34',
+          },
+          {
+            name: 'William',
+            message: 'Hello',
+            time: '20:56',
+          },
+          {
+            name: 'Mia',
+            message: 'you up?',
             time: '12:00',
           },
           {
-            name: 'John',
+            name: 'Benji',
+            message: 'Hows it going? ',
+            time: '12:00',
+          },
+          {
+            name: 'Emma',
+            message: 'Sup?',
+            time: '12:00',
+          },
+          {
+            name: 'Liam',
+            message: 'wyd',
+            time: '12:00',
+          },
+          {
+            name: 'Harper',
+            message: 'lets make a blend',
+            time: '12:00',
+          },
+          {
+            name: 'Noah',
             message: 'Hello',
             time: '12:00',
           },
           {
-            name: 'John',
+            name: 'Logan',
             message: 'Hello',
             time: '12:00',
           },
           {
-            name: 'John',
+            name: 'Emilia',
             message: 'Hello',
             time: '12:00',
           },
           {
-            name: 'John',
+            name: 'Abigail',
             message: 'Hello',
             time: '12:00',
           },
           {
-            name: 'John',
+            name: 'Taylor',
             message: 'Hello',
             time: '12:00',
           },
           {
-            name: 'John',
+            name: 'Jake',
             message: 'Hello',
             time: '12:00',
           },
           {
-            name: 'John',
+            name: 'Joe',
             message: 'Hello',
             time: '12:00',
           },
           {
-            name: 'John',
+            name: 'Harry',
             message: 'Hello',
             time: '12:00',
           },
           {
-            name: 'John',
-            message: 'Hello',
-            time: '12:00',
-          },
-          {
-            name: 'John',
-            message: 'Hello',
-            time: '12:00',
-          },
-          {
-            name: 'John',
-            message: 'Hello',
-            time: '12:00',
-          },
-          {
-            name: 'John',
-            message: 'Hello',
-            time: '12:00',
-          },
-          {
-            name: 'John',
-            message: 'Hello',
-            time: '12:00',
-          },
-          {
-            name: 'John',
-            message: 'Hello',
-            time: '12:00',
-          },
-          {
-            name: 'John',
-            message: 'Hello',
-            time: '12:00',
-          },
-          {
-            name: 'John',
-            message: 'Hello',
-            time: '12:00',
-          },
-          {
-            name: 'John',
-            message: 'Hello',
-            time: '12:00',
-          },
-          {
-            name: 'John',
-            message: 'Hello',
-            time: '12:00',
-          },
-          {
-            name: 'John',
-            message: 'Hello',
-            time: '12:00',
-          },
-          {
-            name: 'John',
-            message: 'Hello',
-            time: '12:00',
-          },
-          {
-            name: 'John',
-            message: 'Hello',
-            time: '12:00',
-          },
-          {
-            name: 'John',
+            name: 'Selena',
             message: 'Hello',
             time: '12:00',
           },
