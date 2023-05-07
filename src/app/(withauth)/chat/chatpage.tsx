@@ -17,7 +17,7 @@ const ChatPage = () => {
   const router = useRouter();
   const [messages, setMessages] = useState([
     { id: 1, text: 'same here', user: 'me' },
-    { id: 2, text: "Me chilling, you?", user: 'other' },
+    { id: 2, text: 'Me chilling, you?', user: 'other' },
     { id: 3, text: 'Wassup bruv?', user: 'me' },
     { id: 4, text: 'Helloo!', user: 'other' },
   ]);

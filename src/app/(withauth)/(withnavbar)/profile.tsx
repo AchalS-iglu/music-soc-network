@@ -37,7 +37,7 @@ const ProfilePage = () => {
           style={{
             position: 'absolute',
             right: 16,
-            top: 0,
+            top: -16,
             height: 48,
             width: 48,
             justifyContent: 'center',

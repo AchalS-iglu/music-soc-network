@@ -20,21 +20,7 @@ export default function App() {
     // router.push('/auth/welcome');
   });
   return (
-    <View style={{ flex: 1, marginBottom: 60 }}>
-      {/* <TouchableOpacity
-        style={{
-          backgroundColor: '#ccc',
-          bottom: '50%',
-          padding: 10,
-          borderRadius: 50,
-        }}
-        onPress={() => {
-          // Do something when the icon is pressed
-          // blehhh
-        }}
-      >
-        <Icon name="rocket" size={30} color="#900" />
-      </TouchableOpacity> */}
+    <View style={{ flex: 1 }}>
       <View
         style={{
           flex: 1,
@@ -59,6 +45,7 @@ export default function App() {
               style={{
                 fontSize: 20,
                 fontWeight: 'bold',
+                color: colours.GreenDark,
               }}
             >
               @{user.username}
@@ -140,6 +127,7 @@ export default function App() {
                   style={{
                     fontSize: 12,
                     fontStyle: 'italic',
+                    color: colours.GreenDark,
                   }}
                 >
                   Currently Playing...{' '}
@@ -149,6 +137,7 @@ export default function App() {
                     fontSize: 18,
                     fontWeight: 'bold',
                     marginLeft: 4,
+                    color: colours.GreenDark,
                   }}
                 >
                   Brooklyn Baby
@@ -156,6 +145,7 @@ export default function App() {
                 <Text
                   style={{
                     fontSize: 12,
+                    color: colours.GreenDark,
                   }}
                 >
                   Lana Del Rey
@@ -201,6 +191,7 @@ export default function App() {
                       marginLeft: 8,
                       fontSize: 18,
                       fontWeight: 'bold',
+                      color: colours.GreenDark,
                     }}
                   >
                     User_1{' '}
@@ -219,6 +210,7 @@ export default function App() {
                       fontSize: 12,
                       marginLeft: 4,
                       fontStyle: 'italic',
+                      color: colours.GreenDark,
                     }}
                   >
                     to the same song.
@@ -243,6 +235,7 @@ export default function App() {
                 fontSize: 25,
                 fontWeight: 'bold',
                 textAlign: 'center',
+                color: colours.GreenDark,
               }}
             >
               Soulmates
@@ -252,6 +245,7 @@ export default function App() {
                 textAlign: 'center',
                 fontSize: 18,
                 marginBottom: 8,
+                color: colours.GreenDark,
               }}
             >
               Find other people that have the same music taste as you
@@ -298,6 +292,7 @@ export default function App() {
                 fontSize: 15,
                 textAlign: 'left',
                 fontWeight: 'bold',
+                color: colours.GreenDark,
               }}
             >
               Recently Played{' '}
@@ -329,6 +324,7 @@ export default function App() {
                 <Text
                   style={{
                     fontSize: 10,
+                    color: colours.GreenDark,
                   }}
                 >
                   Video Games-Lana
@@ -346,6 +342,7 @@ export default function App() {
                 fontSize: 15,
                 textAlign: 'left',
                 fontWeight: 'bold',
+                color: colours.GreenDark,
               }}
             >
               Your Top Mixes{' '}
@@ -377,6 +374,7 @@ export default function App() {
                 <Text
                   style={{
                     fontSize: 10,
+                    color: colours.GreenDark,
                   }}
                 >
                   Indie Mix
@@ -394,6 +392,7 @@ export default function App() {
                 fontSize: 15,
                 textAlign: 'left',
                 fontWeight: 'bold',
+                color: colours.GreenDark,
               }}
             >
               Your Playlists{' '}
@@ -425,6 +424,7 @@ export default function App() {
                 <Text
                   style={{
                     fontSize: 10,
+                    color: colours.GreenDark,
                   }}
                 >
                   summer'23

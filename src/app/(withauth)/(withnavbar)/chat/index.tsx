@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import { colours } from '../../../styles/colours';
+import { colours } from '../../../../styles/colours';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
 import { useRouter } from 'expo-router';
@@ -102,7 +102,7 @@ const Chat = () => {
             alignItems: 'center',
             marginHorizontal: 16,
             borderRadius: 8,
-            
+
             backgroundColor: '#d5d5d5',
             marginTop: 12,
             marginBottom: 12,
@@ -116,10 +116,14 @@ const Chat = () => {
               marginHorizontal: 8,
             }}
           />
-          <Text style={{
-            fontStyle:'italic'
-          }}
-          > Search for friends</Text>
+          <Text
+            style={{
+              fontStyle: 'italic',
+            }}
+          >
+            {' '}
+            Search for friends
+          </Text>
         </View>
         {[
           {

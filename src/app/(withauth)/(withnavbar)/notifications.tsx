@@ -23,7 +23,7 @@ const notifications = () => {
             fontSize: 20,
             fontWeight: 'bold',
             color: colours.GreenDark,
-            marginVertical: 12,
+            marginTop: 12,
           }}
         >
           Notifications
@@ -31,7 +31,6 @@ const notifications = () => {
         <ScrollView
           style={{
             flex: 1,
-            paddingHorizontal: 12,
           }}
         >
           <Text style={styles.notifHeader}>Today</Text>
@@ -149,5 +148,6 @@ const styles = StyleSheet.create({
   notifTextBold: {
     fontSize: 18,
     fontWeight: 'bold',
+    color: colours.GreenDark,
   },
 });
