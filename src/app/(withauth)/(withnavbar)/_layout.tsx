@@ -53,12 +53,12 @@ export default function HomeLayout() {
         </Pressable>
         <Pressable
           onPress={() => {
-            router.push('/search');
+            router.push('/chat');
           }}
           style={navbarStyles.iconContainer}
         >
           <IconIonicons
-            name="search"
+            name="chatbubble-ellipses-sharp"
             size={navbarStyles.icon.height}
             color={colours.GreenDark}
             style={navbarStyles.icon}

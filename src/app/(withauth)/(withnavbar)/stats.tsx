@@ -1,6 +1,7 @@
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { commonStyles } from '../../../styles/common';
+import { colours } from '../../../styles/colours';
 
 const statistics = () => {
   return (
@@ -333,14 +334,14 @@ const styles = StyleSheet.create({
     marginVertical: 12,
   },
   box: {
-    backgroundColor: 'grey',
+    backgroundColor: colours.BeigeDark,
     borderRadius: 20,
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
   topTracksBox: {
-    backgroundColor: 'grey',
+    backgroundColor: colours.BeigeDark,
     borderRadius: 20,
     flex: 1,
     alignItems: 'center',

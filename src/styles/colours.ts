@@ -11,5 +11,6 @@ export const enum colours {
     DustyBlue = "#6E7B8B",
     RustyOrange = "#A83C16",
     Mauve = "#A0889B",
-    Teal = "#1D6D69"
+    Teal = "#1D6D69",
+    BeigeDark = '#8d815e'
 }

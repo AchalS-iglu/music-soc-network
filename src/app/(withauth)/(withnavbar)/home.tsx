@@ -1,12 +1,13 @@
 import { useRootNavigationState, useRouter } from 'expo-router';
 import { useContext, useEffect } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colours } from '../../../styles/colours';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import IconIonic from 'react-native-vector-icons/Ionicons';
 import { ScrollView } from 'react-native';
 import { AuthContext } from '../../../lib/auth/context';
+import { TouchableOpacity } from 'react-native';
 
 export default function App() {
   const router = useRouter();
@@ -47,28 +48,58 @@ export default function App() {
         >
           <View
             style={{
-              paddingTop: 20,
+              marginTop: 20,
               justifyContent: 'space-between',
+              alignItems: 'center',
               flexDirection: 'row',
+              marginBottom: 12,
             }}
           >
             <Text
               style={{
                 fontSize: 20,
                 fontWeight: 'bold',
-                paddingBottom: 10,
               }}
             >
               @{user.username}
             </Text>
-            <IconIonic
-              name="chatbubble-ellipses-outline"
-              size={24}
-              color={colours.GreenDark}
-              onPress={() => {
-                router.push('/chat');
+            <View
+              style={{
+                flexDirection: 'row',
+                gap: 4,
+                width: '60%',
               }}
-            />
+            >
+              <TextInput
+                style={{
+                  backgroundColor: '#d5d5d5',
+                  borderRadius: 10,
+                  padding: 8,
+                  flex: 1,
+                  width: '75%',
+                  height: '100%',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}
+                placeholder="Search"
+                placeholderTextColor={colours.GreenDark}
+              />
+              <TouchableOpacity
+                style={{
+                  backgroundColor: colours.BeigeDark,
+                  borderRadius: 10,
+                  padding: 8,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}
+                onPress={() => {
+                  // Do something when the icon is pressed
+                  // blehhh
+                }}
+              >
+                <IconIonic name="search" size={24} color={colours.GreenDark} />
+              </TouchableOpacity>
+            </View>
           </View>
           <View
             style={{
@@ -78,7 +109,7 @@ export default function App() {
           >
             <View
               style={{
-                backgroundColor: 'gray',
+                backgroundColor: colours.BeigeDark,
                 borderRadius: 10,
                 padding: 8,
                 flex: 1,
@@ -120,20 +151,20 @@ export default function App() {
                     marginLeft: 4,
                   }}
                 >
-                  SongSongSong
+                  Brooklyn Baby
                 </Text>
                 <Text
                   style={{
                     fontSize: 12,
                   }}
                 >
-                  Artist
+                  Lana Del Rey
                 </Text>
               </View>
             </View>
             <View
               style={{
-                backgroundColor: 'gray',
+                backgroundColor: colours.BeigeDark,
                 borderRadius: 10,
                 padding: 8,
                 flex: 1,
@@ -167,35 +198,30 @@ export default function App() {
                 >
                   <Text
                     style={{
+                      marginLeft: 8,
+                      fontSize: 18,
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    User_1{' '}
+                    <Text
+                      style={{
+                        fontSize: 12,
+                        fontStyle: 'italic',
+                        fontWeight: 'normal',
+                      }}
+                    >
+                      is listening
+                    </Text>
+                  </Text>
+                  <Text
+                    style={{
                       fontSize: 12,
+                      marginLeft: 4,
                       fontStyle: 'italic',
                     }}
                   >
-                    <Text
-                      style={{
-                        fontWeight: 'bold',
-                        fontStyle: 'italic',
-                      }}
-                    >
-                      User_1{' '}
-                    </Text>
-                    is also listening to
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: 18,
-                      fontWeight: 'bold',
-                      marginLeft: 4,
-                    }}
-                  >
-                    SongSongSong
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: 12,
-                    }}
-                  >
-                    Artist
+                    to the same song.
                   </Text>
                 </View>
               </View>
@@ -207,8 +233,9 @@ export default function App() {
               paddingVertical: 20,
               paddingHorizontal: 16,
               borderRadius: 10,
-              marginVertical: 12,
-              backgroundColor: 'gray',
+              marginTop: 4,
+              marginBottom: 12,
+              backgroundColor: colours.BeigeDark,
             }}
           >
             <Text
@@ -253,7 +280,11 @@ export default function App() {
                 >
                   Search for soulmates
                 </Text>
-                <Icon name="chevron-right" size={12} color={'gray'} />
+                <Icon
+                  name="chevron-right"
+                  size={12}
+                  color={colours.BeigeDark}
+                />
               </View>
             </View>
           </View>

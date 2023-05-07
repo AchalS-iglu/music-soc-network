@@ -144,11 +144,13 @@ const ProfilePage = () => {
         </Text>
         <View style={styles.statsContainer}>
           <View style={styles.stat}>
-            <Text style={styles.statNumber}>{user.followersCount ?? '0'}</Text>
+            {/* <Text style={styles.statNumber}>{user.followersCount ?? '0'}</Text> */}
+            <Text style={styles.statNumber}>20</Text>
             <Text style={styles.statTitle}>Followers</Text>
           </View>
           <View style={styles.stat}>
-            <Text style={styles.statNumber}>{user.followingCount ?? '0'}</Text>
+            {/* <Text style={styles.statNumber}>{user.followingCount ?? '0'}</Text> */}
+            <Text style={styles.statNumber}>30</Text>
             <Text style={styles.statTitle}>Following</Text>
           </View>
         </View>
@@ -352,7 +354,7 @@ const ProfilePage = () => {
                       fontStyle: 'italic',
                       fontSize: 10,
                       marginLeft: 7,
-                      color: 'grey',
+                      color: colours.BeigeDark,
                     }}
                   >
                     {song.artist}
@@ -366,7 +368,7 @@ const ProfilePage = () => {
                     fontSize: 12,
                     marginTop: 17,
                     marginLeft: 70,
-                    color: 'grey',
+                    color: colours.BeigeDark,
                   }}
                 >
                   {song.album}
@@ -378,7 +380,7 @@ const ProfilePage = () => {
                     fontSize: 12,
                     marginTop: 17,
                     marginLeft: 70,
-                    color: 'grey',
+                    color: colours.BeigeDark,
                   }}
                 >
                   {song.time}
