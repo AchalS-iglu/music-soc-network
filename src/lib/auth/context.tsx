@@ -52,8 +52,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setLoading(true);
     const userUnparsed = await AsyncStorage.getItem('user');
     const accessToken = await SecureStore.getItemAsync('access-token');
-    const refreshToken = await SecureStore.getItemAsync('refresh-token');
-    if (!userUnparsed || !accessToken || !refreshToken) {
+    // const refreshToken = await SecureStore.getItemAsync('refresh-token');
+    if (!userUnparsed || !accessToken) {
       // router.replace('/auth/welcome');
       setLoading(false);
       return;
@@ -174,7 +174,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         await SecureStore.setItemAsync('access-token', data.access_token);
         await SecureStore.setItemAsync('refresh-token', data.refresh_token);
         console.log(`
-          user: ${JSON.stringify(user)}
+          // user: ${user.username}
           access-token: ${data.access_token}
           refresh-token: ${data.refresh_token}`);
         if (newUser) {

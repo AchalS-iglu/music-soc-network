@@ -14,11 +14,7 @@ const _layout = () => {
   //   if (user.uid) return;
   //   router.push('/auth/welcome');
   // }, []);
-  return (
-    <>
-      <Slot />
-    </>
-  );
+  return <Slot />;
 };
 
 export default _layout;

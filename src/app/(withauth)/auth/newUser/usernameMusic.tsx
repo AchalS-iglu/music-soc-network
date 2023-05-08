@@ -51,8 +51,7 @@ const newUser = () => {
   return (
     <ScrollView
       style={{
-        height: '100%',
-        width: '100%',
+        flex: 1,
         backgroundColor: colours.BaseA,
       }}
     >
@@ -60,10 +59,9 @@ const newUser = () => {
         style={{
           paddingVertical: 64,
           flex: 1,
-          width: '100%',
-          height: '100%',
           justifyContent: 'center',
           alignItems: 'center',
+          backgroundColor: colours.BaseA,
         }}
       >
         <View
