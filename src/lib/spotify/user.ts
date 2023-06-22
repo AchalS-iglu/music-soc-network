@@ -91,11 +91,13 @@ export const getPlaybackState = async (accessToken: string) => {
         };
         href: string;
         id: string;
-        images: {
-          url: string;
-          height: number;
-          width: number;
-        }[];
+        album: {
+          images: {
+            url: string;
+            height: number;
+            width: number;
+          }[];
+        }
         name: string;
         release_date: string;
         release_date_precision: "year";

@@ -10,12 +10,22 @@ export type User_t = {
     lastLogin?: number | null,
     lastActivity?: number | null,
     tagline?: string,
-    followingCount?: number,
-    followersCount?: number,
     profilePlaylists?: {
         display: boolean,
         playlists: Playlist_t[]
-    }
+    },
+    following?: {
+        [uid: string]: boolean
+    },
+    followers?: {
+        [uid: string]: boolean
+    },
+    pendingIncomingFollowRequests?: {
+        [uid: string]: boolean
+    },
+    pendingOutgoingFollowRequests?: {
+        [uid: string]: boolean
+    },
 }
 
 export type Playlist_t = {

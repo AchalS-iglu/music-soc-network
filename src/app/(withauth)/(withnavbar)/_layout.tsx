@@ -4,9 +4,12 @@ import { colours } from '../../../styles/colours';
 import IconFoundation from 'react-native-vector-icons/Foundation';
 import IconMaterialC from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
+import { useContext } from 'react';
+import { AuthContext } from '../../../lib/auth/context';
 
 export default function HomeLayout() {
   const router = useRouter();
+  const { user } = useContext(AuthContext);
   return (
     <>
       {/* <View style={topbarStyles.bar}>
@@ -79,7 +82,7 @@ export default function HomeLayout() {
         </Pressable>
         <Pressable
           onPress={() => {
-            router.push('/profile');
+            router.push('/profile/' + user.username);
           }}
           style={navbarStyles.iconContainer}
         >

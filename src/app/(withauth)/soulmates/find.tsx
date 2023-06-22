@@ -28,6 +28,17 @@ const find = () => {
         Looking through 12345 users
       </Text>
       <VinylLoader />
+      <Text
+        style={{
+          color: colours.Red,
+          marginTop: 40,
+          fontStyle: 'italic',
+          width: '70%',
+        }}
+      >
+        Warning: This will not work properly until the application hits a
+        considerable userbase. {`(10,000 >)`}
+      </Text>
     </View>
   );
 };

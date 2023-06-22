@@ -9,10 +9,16 @@ import { ScrollView } from 'react-native';
 import { AuthContext } from '../../../lib/auth/context';
 import { TouchableOpacity } from 'react-native';
 import { getPlaybackState } from '../../../lib/spotify/user';
+import { User_t } from '../../../lib/models';
+import { searchUsers } from '../../../lib/firebase/user';
 
 export default function App() {
   const router = useRouter();
   const navigationState = useRootNavigationState();
+
+  const [isSearching, setIsSearching] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [searchResults, setSearchResults] = useState<User_t[]>([]);
 
   const [currentlyPlaying, setCurrentlyPlaying] = useState<{
     isPlaying: boolean;
@@ -26,11 +32,13 @@ export default function App() {
       };
       href: string;
       id: string;
-      images: {
-        url: string;
-        height: number;
-        width: number;
-      }[];
+      album: {
+        images: {
+          url: string;
+          height: number;
+          width: number;
+        }[];
+      };
       name: string;
       release_date: string;
       release_date_precision: 'year';
@@ -81,6 +89,20 @@ export default function App() {
     });
   }, []);
 
+  // useEffect(() => {
+  //   if (!isSearching) {
+  //     if (searchQuery !== '') {
+  //       setIsSearching(true);
+  //     }
+  //   }
+  // }, [searchQuery]);
+
+  const handleSearch = async () => {
+    console.log(searchQuery);
+    const res = await searchUsers(searchQuery);
+    setSearchResults(res);
+  };
+
   return (
     <View style={{ flex: 1 }}>
       <View
@@ -130,378 +152,499 @@ export default function App() {
                   flexDirection: 'row',
                   alignItems: 'center',
                 }}
-                placeholder="Search"
+                placeholder="Search users"
                 placeholderTextColor={colours.GreenDark}
+                onChangeText={(text) => setSearchQuery(text)}
+                value={searchQuery}
               />
-              <TouchableOpacity
-                style={{
-                  backgroundColor: colours.BeigeDark,
-                  borderRadius: 10,
-                  padding: 8,
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                }}
-                onPress={() => {
-                  // Do something when the icon is pressed
-                  // blehhh
-                }}
-              >
-                <IconIonic name="search" size={24} color={colours.GreenDark} />
-              </TouchableOpacity>
+              {isSearching ? (
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: colours.BeigeDark,
+                    borderRadius: 10,
+                    padding: 8,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                  }}
+                  onPress={() => {
+                    setIsSearching(false);
+                  }}
+                >
+                  <IconIonic name="close" size={24} color={colours.GreenDark} />
+                </TouchableOpacity>
+              ) : (
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: colours.BeigeDark,
+                    borderRadius: 10,
+                    padding: 8,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                  }}
+                  onPress={() => {
+                    if (searchQuery.length < 1) return;
+                    setIsSearching(true);
+                    handleSearch();
+                  }}
+                >
+                  <IconIonic
+                    name="search"
+                    size={24}
+                    color={colours.GreenDark}
+                  />
+                </TouchableOpacity>
+              )}
             </View>
           </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              gap: 4,
-            }}
-          >
-            <View
+          {isSearching ? (
+            <ScrollView
               style={{
-                backgroundColor: colours.BeigeDark,
-                borderRadius: 10,
-                padding: 8,
                 flex: 1,
-                width: '50%',
-                height: '100%',
-                flexDirection: 'row',
-                alignItems: 'center',
               }}
             >
-              <Image
-                source={{
-                  uri:
-                    currentlyPlaying.isPlaying && currentlyPlaying.item?.images
-                      ? currentlyPlaying.item?.images[0].url
-                      : 'https://i.scdn.co/image/ab67616d0000b273e4b4b3b3b3b3b3b3b3b3b3b3',
-                }}
-                style={{
-                  width: 50,
-                  height: 50,
-                  borderRadius: 50,
-                }}
-              />
-              <View
-                style={{
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  alignItems: 'flex-start',
-                }}
-              >
-                <Text
-                  style={{
-                    fontSize: 12,
-                    fontStyle: 'italic',
-                    color: colours.GreenDark,
-                  }}
-                >
-                  Currently Playing...{' '}
-                </Text>
-                <Text
-                  style={{
-                    fontSize: 18,
-                    fontWeight: 'bold',
-                    marginLeft: 4,
-                    color: colours.GreenDark,
-                  }}
-                >
-                  {currentlyPlaying.isPlaying
-                    ? currentlyPlaying.item?.name
-                    : 'Nothing'}
-                </Text>
-                <Text
-                  style={{
-                    fontSize: 12,
-                    color: colours.GreenDark,
-                  }}
-                >
-                  {currentlyPlaying.isPlaying
-                    ? currentlyPlaying.item?.artists[0].name
-                    : 'Nothing'}
-                </Text>
-              </View>
-            </View>
-            <View
-              style={{
-                backgroundColor: colours.BeigeDark,
-                borderRadius: 10,
-                padding: 8,
-                flex: 1,
-                flexDirection: 'row',
-                marginBottom: 12,
-                width: '50%',
-                height: '100%',
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <Image
-                  source={{
-                    uri: 'https://picsum.photos/300',
-                  }}
-                  style={{
-                    width: 50,
-                    height: 50,
-                    borderRadius: 50,
-                  }}
-                />
+              {searchResults.length > 0 ? (
+                <>
+                  {searchResults.map((user) => (
+                    <TouchableOpacity
+                      key={user.uid}
+                      style={{
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        paddingVertical: 8,
+                        borderBottomWidth: 1,
+                        borderBottomColor: colours.GreenDark,
+                      }}
+                      onPress={() => {
+                        router.push(`/profile/${user.username}`);
+                      }}
+                    >
+                      <View
+                        style={{
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                        }}
+                      >
+                        <Image
+                          source={{
+                            uri: user.dp,
+                          }}
+                          style={{
+                            width: 50,
+                            height: 50,
+                            borderRadius: 50,
+                          }}
+                        />
+                        <Text
+                          style={{
+                            fontSize: 18,
+                            fontWeight: 'bold',
+                            color: colours.GreenDark,
+                            marginLeft: 8,
+                          }}
+                        >
+                          {user.username}
+                        </Text>
+                      </View>
+                      <TouchableOpacity
+                        style={{
+                          backgroundColor: colours.BeigeDark,
+                          borderRadius: 10,
+                          padding: 8,
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                        }}
+                        onPress={() => {
+                          router.push(`/profile/${user.username}`);
+                        }}
+                      >
+                        <IconIonic
+                          name="arrow-forward"
+                          size={24}
+                          color={colours.GreenDark}
+                        />
+                      </TouchableOpacity>
+                    </TouchableOpacity>
+                  ))}
+                </>
+              ) : (
                 <View
                   style={{
-                    flexDirection: 'column',
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
                   }}
                 >
                   <Text
                     style={{
-                      marginLeft: 8,
-                      fontSize: 18,
+                      fontSize: 20,
                       fontWeight: 'bold',
                       color: colours.GreenDark,
                     }}
                   >
-                    User_1{' '}
+                    User not found
+                  </Text>
+                </View>
+              )}
+            </ScrollView>
+          ) : (
+            <>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  gap: 4,
+                }}
+              >
+                <View
+                  style={{
+                    backgroundColor: colours.BeigeDark,
+                    borderRadius: 10,
+                    padding: 8,
+                    flex: 1,
+                    width: '50%',
+                    height: '100%',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Image
+                    source={{
+                      uri:
+                        currentlyPlaying.isPlaying &&
+                        currentlyPlaying.item?.album.images
+                          ? currentlyPlaying.item?.album.images[0].url
+                          : 'https://i.scdn.co/image/ab67706c0000bebb1cbab273ab5b8ec7b7f062f6',
+                    }}
+                    style={{
+                      width: 50,
+                      height: 50,
+                      borderRadius: 50,
+                    }}
+                  />
+                  <View
+                    style={{
+                      flexDirection: 'column',
+                      justifyContent: 'center',
+                      alignItems: 'flex-start',
+                    }}
+                  >
                     <Text
                       style={{
                         fontSize: 12,
                         fontStyle: 'italic',
-                        fontWeight: 'normal',
+                        color: colours.GreenDark,
                       }}
                     >
-                      is listening
+                      Currently Playing...{' '}
                     </Text>
-                  </Text>
-                  <Text
+                    <Text
+                      style={{
+                        fontSize: 18,
+                        fontWeight: 'bold',
+                        marginLeft: 4,
+                        color: colours.GreenDark,
+                        overflow: 'hidden',
+                        width: '60%',
+                      }}
+                    >
+                      {currentlyPlaying.isPlaying
+                        ? currentlyPlaying.item?.name
+                        : 'Nothing'}
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: 12,
+                        color: colours.GreenDark,
+                      }}
+                    >
+                      {currentlyPlaying.isPlaying
+                        ? currentlyPlaying.item?.artists[0].name
+                        : 'Nothing'}
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    backgroundColor: colours.BeigeDark,
+                    borderRadius: 10,
+                    padding: 8,
+                    flex: 1,
+                    flexDirection: 'row',
+                    marginBottom: 12,
+                    width: '50%',
+                    height: '100%',
+                  }}
+                >
+                  <View
                     style={{
-                      fontSize: 12,
-                      marginLeft: 4,
-                      fontStyle: 'italic',
-                      color: colours.GreenDark,
+                      flexDirection: 'row',
+                      justifyContent: 'center',
+                      alignItems: 'center',
                     }}
                   >
-                    to the same song.
-                  </Text>
+                    <Image
+                      source={{
+                        uri: 'https://picsum.photos/300',
+                      }}
+                      style={{
+                        width: 50,
+                        height: 50,
+                        borderRadius: 50,
+                      }}
+                    />
+                    <View
+                      style={{
+                        flexDirection: 'column',
+                      }}
+                    >
+                      <Text
+                        style={{
+                          marginLeft: 8,
+                          fontSize: 18,
+                          fontWeight: 'bold',
+                          color: colours.GreenDark,
+                        }}
+                      >
+                        No one{' '}
+                        <Text
+                          style={{
+                            fontSize: 12,
+                            fontStyle: 'italic',
+                            fontWeight: 'normal',
+                          }}
+                        >
+                          is listening
+                        </Text>
+                      </Text>
+                      <Text
+                        style={{
+                          fontSize: 12,
+                          marginLeft: 4,
+                          fontStyle: 'italic',
+                          color: colours.GreenDark,
+                        }}
+                      >
+                        to the same song.
+                      </Text>
+                    </View>
+                  </View>
                 </View>
               </View>
-            </View>
-          </View>
-
-          <View
-            style={{
-              paddingVertical: 20,
-              paddingHorizontal: 16,
-              borderRadius: 10,
-              marginTop: 4,
-              marginBottom: 12,
-              backgroundColor: colours.BeigeDark,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 25,
-                fontWeight: 'bold',
-                textAlign: 'center',
-                color: colours.GreenDark,
-              }}
-            >
-              Soulmates
-            </Text>
-            <Text
-              style={{
-                textAlign: 'center',
-                fontSize: 18,
-                marginBottom: 8,
-                color: colours.GreenDark,
-              }}
-            >
-              Find other people that have the same music taste as you
-            </Text>
-            <View
-              style={{
-                borderRadius: 10,
-                backgroundColor: '#d5d5d5',
-                paddingHorizontal: 16,
-                paddingVertical: 8,
-              }}
-            >
-              <TouchableOpacity
+              <View
                 style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
+                  paddingVertical: 20,
+                  paddingHorizontal: 16,
+                  borderRadius: 10,
+                  marginTop: 4,
+                  marginBottom: 12,
+                  backgroundColor: colours.BeigeDark,
                 }}
-                onPress={() => router.push('/soulmates/find')}
               >
                 <Text
                   style={{
-                    color: colours.Teal,
-                    fontStyle: 'italic',
-                    marginLeft: 5,
-                  }}
-                >
-                  Search for soulmates
-                </Text>
-                <Icon
-                  name="chevron-right"
-                  size={12}
-                  color={colours.BeigeDark}
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View
-            style={{
-              paddingTop: 0,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 15,
-                textAlign: 'left',
-                fontWeight: 'bold',
-                color: colours.GreenDark,
-              }}
-            >
-              Recently Played{' '}
-            </Text>
-          </View>
-          <ScrollView
-            style={{
-              flexDirection: 'row',
-
-              columnGap: 8,
-              gap: 8,
-            }}
-            horizontal={true}
-          >
-            {[...Array(6)].map((i) => (
-              <View key={i}>
-                <Image
-                  source={{
-                    uri: 'https://i.pinimg.com/236x/6e/22/f5/6e22f534311eab2f56d04173de8d6bb6.jpg',
-                  }}
-                  style={{
-                    width: 120,
-                    height: 120,
-                    borderRadius: 10,
-                    marginRight: 3,
-                  }}
-                />
-
-                <Text
-                  style={{
-                    fontSize: 10,
+                    fontSize: 25,
+                    fontWeight: 'bold',
+                    textAlign: 'center',
                     color: colours.GreenDark,
                   }}
                 >
-                  Video Games-Lana
+                  Soulmates
                 </Text>
-              </View>
-            ))}
-          </ScrollView>
-          <View
-            style={{
-              paddingTop: 20,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 15,
-                textAlign: 'left',
-                fontWeight: 'bold',
-                color: colours.GreenDark,
-              }}
-            >
-              Your Top Mixes{' '}
-            </Text>
-          </View>
-          <ScrollView
-            style={{
-              flexDirection: 'row',
-
-              columnGap: 8,
-              gap: 8,
-            }}
-            horizontal={true}
-          >
-            {[...Array(6)].map((i) => (
-              <View key={i}>
-                <Image
-                  source={{
-                    uri: 'https://i.pinimg.com/564x/ed/b9/f8/edb9f87e765bdaa4897b4cf8c824cd1e.jpg',
-                  }}
-                  style={{
-                    width: 120,
-                    height: 120,
-                    borderRadius: 10,
-                    marginRight: 3,
-                  }}
-                />
-
                 <Text
                   style={{
-                    fontSize: 10,
+                    textAlign: 'center',
+                    fontSize: 18,
+                    marginBottom: 8,
                     color: colours.GreenDark,
                   }}
                 >
-                  Indie Mix
+                  Find other people that have the same music taste as you
                 </Text>
-              </View>
-            ))}
-          </ScrollView>
-          <View
-            style={{
-              paddingTop: 20,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 15,
-                textAlign: 'left',
-                fontWeight: 'bold',
-                color: colours.GreenDark,
-              }}
-            >
-              Your Playlists{' '}
-            </Text>
-          </View>
-          <ScrollView
-            style={{
-              flexDirection: 'row',
-
-              columnGap: 8,
-              gap: 8,
-            }}
-            horizontal={true}
-          >
-            {[...Array(6)].map((i) => (
-              <View key={i}>
-                <Image
-                  source={{
-                    uri: 'https://i.pinimg.com/564x/1c/7f/78/1c7f78218e032927125fd7f4365c3f96.jpg',
-                  }}
+                <View
                   style={{
-                    width: 120,
-                    height: 120,
                     borderRadius: 10,
-                    marginRight: 3,
+                    backgroundColor: '#d5d5d5',
+                    paddingHorizontal: 16,
+                    paddingVertical: 8,
                   }}
-                />
-
+                >
+                  <TouchableOpacity
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}
+                    onPress={() => router.push('/soulmates/find')}
+                  >
+                    <Text
+                      style={{
+                        color: colours.Teal,
+                        fontStyle: 'italic',
+                        marginLeft: 5,
+                      }}
+                    >
+                      Search for soulmates
+                    </Text>
+                    <Icon
+                      name="chevron-right"
+                      size={12}
+                      color={colours.BeigeDark}
+                    />
+                  </TouchableOpacity>
+                </View>
+              </View>
+              {/* <View
+                style={{
+                  paddingTop: 0,
+                }}
+              >
                 <Text
                   style={{
-                    fontSize: 10,
+                    fontSize: 15,
+                    textAlign: 'left',
+                    fontWeight: 'bold',
                     color: colours.GreenDark,
                   }}
                 >
-                  summer'23
+                  Recently Played{' '}
                 </Text>
               </View>
-            ))}
-          </ScrollView>
+              <ScrollView
+                style={{
+                  flexDirection: 'row',
+
+                  columnGap: 8,
+                  gap: 8,
+                }}
+                horizontal={true}
+              >
+                {[...Array(6)].map((i) => (
+                  <View key={i}>
+                    <Image
+                      source={{
+                        uri: 'https://i.pinimg.com/236x/6e/22/f5/6e22f534311eab2f56d04173de8d6bb6.jpg',
+                      }}
+                      style={{
+                        width: 120,
+                        height: 120,
+                        borderRadius: 10,
+                        marginRight: 3,
+                      }}
+                    />
+
+                    <Text
+                      style={{
+                        fontSize: 10,
+                        color: colours.GreenDark,
+                      }}
+                    >
+                      Video Games-Lana
+                    </Text>
+                  </View>
+                ))}
+              </ScrollView>
+              <View
+                style={{
+                  paddingTop: 20,
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: 15,
+                    textAlign: 'left',
+                    fontWeight: 'bold',
+                    color: colours.GreenDark,
+                  }}
+                >
+                  Your Top Mixes{' '}
+                </Text>
+              </View>
+              <ScrollView
+                style={{
+                  flexDirection: 'row',
+
+                  columnGap: 8,
+                  gap: 8,
+                }}
+                horizontal={true}
+              >
+                {[...Array(6)].map((i) => (
+                  <View key={i}>
+                    <Image
+                      source={{
+                        uri: 'https://i.pinimg.com/564x/ed/b9/f8/edb9f87e765bdaa4897b4cf8c824cd1e.jpg',
+                      }}
+                      style={{
+                        width: 120,
+                        height: 120,
+                        borderRadius: 10,
+                        marginRight: 3,
+                      }}
+                    />
+
+                    <Text
+                      style={{
+                        fontSize: 10,
+                        color: colours.GreenDark,
+                      }}
+                    >
+                      Indie Mix
+                    </Text>
+                  </View>
+                ))}
+              </ScrollView>
+              <View
+                style={{
+                  paddingTop: 20,
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: 15,
+                    textAlign: 'left',
+                    fontWeight: 'bold',
+                    color: colours.GreenDark,
+                  }}
+                >
+                  Your Playlists{' '}
+                </Text>
+              </View>
+              <ScrollView
+                style={{
+                  flexDirection: 'row',
+
+                  columnGap: 8,
+                  gap: 8,
+                }}
+                horizontal={true}
+              >
+                {[...Array(6)].map((i) => (
+                  <View key={i}>
+                    <Image
+                      source={{
+                        uri: 'https://i.pinimg.com/564x/1c/7f/78/1c7f78218e032927125fd7f4365c3f96.jpg',
+                      }}
+                      style={{
+                        width: 120,
+                        height: 120,
+                        borderRadius: 10,
+                        marginRight: 3,
+                      }}
+                    />
+
+                    <Text
+                      style={{
+                        fontSize: 10,
+                        color: colours.GreenDark,
+                      }}
+                    >
+                      summer'23
+                    </Text>
+                  </View>
+                ))}
+              </ScrollView> */}
+            </>
+          )}
         </SafeAreaView>
       </View>
     </View>
