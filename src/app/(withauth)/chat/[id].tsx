@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   View,
   FlatList,
@@ -11,39 +11,71 @@ import {
 import { colours } from '../../../styles/colours';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
+import { usePathname, useRouter } from 'expo-router';
+import { Message_T } from '../../../lib/models';
+import { AuthContext } from '../../../lib/auth/context';
+import { collection, onSnapshot } from 'firebase/firestore';
+import { db } from '../../../lib/firebase/app';
+import {
+  getDPFromUID,
+  getUsernameFromUID,
+  sendMessage,
+} from '../../../lib/firebase/user';
+import { uuidv4 } from '@firebase/util';
 
 const ChatPage = () => {
   const router = useRouter();
-  const [messages, setMessages] = useState([
-    { id: 1, text: 'same here', user: 'me' },
-    { id: 2, text: 'Me chilling, you?', user: 'other' },
-    { id: 3, text: 'Wassup bruv?', user: 'me' },
-    { id: 4, text: 'Helloo!', user: 'other' },
-  ]);
+  const recieverUID = usePathname().split('/').slice(-1)[0];
+  const [recieverUser, setRecieverUser] = useState<string>('');
+  const [recieverDP, setRecieverDP] = useState<string>('');
+  const [messages, setMessages] = useState<Message_T[]>([]);
   const [text, setText] = useState('');
 
-  const handleSend = () => {
-    const newMessage = { id: messages.length + 1, text, user: 'me' };
-    setMessages([...messages, newMessage]);
+  const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    getUsernameFromUID(recieverUID).then((res) => setRecieverUser(res ?? ''));
+    getDPFromUID(recieverUID).then((res) => setRecieverDP(res ?? ''));
+    if (!user.uid) return;
+    const collectionRef = collection(db, 'Users', user.uid, recieverUID);
+
+    const unsubscribe = onSnapshot(collectionRef, (snapshot) => {
+      setMessages(snapshot.docs.map((doc) => doc.data() as Message_T));
+    });
+
+    return () => {
+      // Unsubscribe from the Firestore listener when component unmounts
+      unsubscribe();
+    };
+  }, []);
+
+  const handleSend = async () => {
+    if (!user.uid) return;
     setText('');
+    await sendMessage(user.uid, recieverUID, {
+      createdAt: new Date().getTime(),
+      id: uuidv4(),
+      reciever: recieverUID,
+      sender: user.uid,
+      text: text,
+      type: 'TEXT',
+      updatedAt: new Date().getTime(),
+    });
   };
 
-  const renderItem = ({
-    item,
-  }: {
-    item: { id: number; text: string; user: string };
-  }) => (
+  const renderItem = ({ item }: { item: Message_T }) => (
     <View
       style={
-        item.user === 'me'
+        item.sender === user.uid
           ? styles.myMessageContainer
           : styles.otherMessageContainer
       }
     >
       <Text
         style={
-          item.user === 'me' ? styles.myMessageText : styles.otherMessageText
+          item.sender === user.uid
+            ? styles.myMessageText
+            : styles.otherMessageText
         }
       >
         {item.text}
@@ -84,7 +116,7 @@ const ChatPage = () => {
           />
           <Image
             source={{
-              uri: 'https://picsum.photos/300',
+              uri: recieverDP !== '' ? recieverDP : 'https://picsum.photos/200',
             }}
             style={{
               height: 48,
@@ -101,7 +133,7 @@ const ChatPage = () => {
               marginLeft: 8,
             }}
           >
-            {'User'}
+            {recieverUser}
           </Text>
         </View>
         <FlatList

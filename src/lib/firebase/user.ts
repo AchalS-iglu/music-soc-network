@@ -1,5 +1,5 @@
 import { collection, doc, getDoc, getDocs, query, setDoc, where, writeBatch } from 'firebase/firestore'
-import { User_t } from '../models'
+import { Message_T, User_t } from '../models'
 import { db } from './app'
 
 export const createUser = async (user: User_t) => {
@@ -194,3 +194,14 @@ export const getDPFromUID = async (uid: string) => {
     if (!docSnap.exists()) return null
     else return docSnap.data().dp as string
 }
+
+export const sendMessage = async (sender: string, reciever: string, message: Message_T) => {
+    const batch = writeBatch(db)
+    batch.set(doc(db, 'Users', sender, reciever, message.id), message)
+    batch.set(doc(db, 'Users', reciever, sender, message.id), message)
+    const res = await batch.commit().then(
+        () => true
+    ).catch((err) => console.log(err))
+    return res
+}
+

@@ -61,3 +61,29 @@ export type Playlist_t = {
     type: string,
     uri: string,
 }
+
+export type Message_T = {
+    id: string,
+    text: string,
+    createdAt: number,
+    updatedAt?: number,
+    deletedAt?: number,
+    readAt?: number,
+    type: 'TEXT' | 'IMAGE' | 'VIDEO' | 'AUDIO' | 'FILE',
+    media?: {
+        url: string,
+        type: string,
+        size: number,
+        duration: number,
+        height: number,
+        width: number,
+    },
+    reactions?: {
+        [uid: string]: {
+            type: string,
+            createdAt: number,
+        }[]
+    },
+    sender: string,
+    reciever: string
+}

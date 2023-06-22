@@ -73,6 +73,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     loadUser();
   }, []);
 
+  useEffect(() => {
+    if (!user.uid) return;
+    const updateUser = async () => {
+      await AsyncStorage.setItem('user', JSON.stringify(user));
+    };
+    updateUser();
+  }, [user]);
+
   const loginWithSpotify = async () => {
     setLoading(true);
     try {
