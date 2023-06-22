@@ -40,7 +40,9 @@ const ChatPage = () => {
     const collectionRef = collection(db, 'Users', user.uid, recieverUID);
 
     const unsubscribe = onSnapshot(collectionRef, (snapshot) => {
-      setMessages(snapshot.docs.map((doc) => doc.data() as Message_T));
+      const msgs = snapshot.docs.map((doc) => doc.data() as Message_T);
+      const sortedMsgs = msgs.sort((a, b) => b.createdAt - a.createdAt);
+      setMessages(sortedMsgs);
     });
 
     return () => {
