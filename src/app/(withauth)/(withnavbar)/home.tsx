@@ -81,7 +81,6 @@ export default function App() {
 
   useEffect(() => {
     // if (!navigationState?.key) return;
-    // router.push('/auth/welcome');
     if (!accessToken) return;
     getPlaybackState(accessToken).then((val) => {
       if (!val) return;

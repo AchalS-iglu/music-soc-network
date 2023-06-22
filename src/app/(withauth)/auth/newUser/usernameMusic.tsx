@@ -199,7 +199,7 @@ const newUser = () => {
               <View style={styles.musicContainer}>
                 <Image
                   source={{
-                    uri: 'https://i.scdn.co/image/ab67616d0000b27336ab788f78d5026d26a5fe85',
+                    uri: 'https://i.scdn.co/image/ab67616d0000b273cfad34817ef21c3f106ed76c',
                   }}
                   style={styles.imageStyle}
                 />
@@ -207,7 +207,7 @@ const newUser = () => {
               <View style={styles.musicContainer}>
                 <Image
                   source={{
-                    uri: 'https://i.scdn.co/image/ab67616d0000b27336ab788f78d5026d26a5fe85',
+                    uri: 'https://i.scdn.co/image/ab67616d0000b273fe03064db12346c962cd0c56',
                   }}
                   style={styles.imageStyle}
                 />
@@ -215,33 +215,7 @@ const newUser = () => {
               <View style={styles.musicContainer}>
                 <Image
                   source={{
-                    uri: 'https://i.scdn.co/image/ab67616d0000b27336ab788f78d5026d26a5fe85',
-                  }}
-                  style={styles.imageStyle}
-                />
-              </View>
-            </View>
-            <View style={styles.musicRow}>
-              <View style={styles.musicContainer}>
-                <Image
-                  source={{
-                    uri: 'https://i.scdn.co/image/ab67616d0000b27336ab788f78d5026d26a5fe85',
-                  }}
-                  style={styles.imageStyle}
-                />
-              </View>
-              <View style={styles.musicContainer}>
-                <Image
-                  source={{
-                    uri: 'https://i.scdn.co/image/ab67616d0000b27336ab788f78d5026d26a5fe85',
-                  }}
-                  style={styles.imageStyle}
-                />
-              </View>
-              <View style={styles.musicContainer}>
-                <Image
-                  source={{
-                    uri: 'https://i.scdn.co/image/ab67616d0000b27336ab788f78d5026d26a5fe85',
+                    uri: 'https://i.scdn.co/image/ab67616d0000b27302a5c6e75b6faf29c867d79c',
                   }}
                   style={styles.imageStyle}
                 />
@@ -251,7 +225,7 @@ const newUser = () => {
               <View style={styles.musicContainer}>
                 <Image
                   source={{
-                    uri: 'https://i.scdn.co/image/ab67616d0000b27336ab788f78d5026d26a5fe85',
+                    uri: 'https://i.scdn.co/image/ab67616d0000b27309815974458b8b0535b23a7d',
                   }}
                   style={styles.imageStyle}
                 />
@@ -259,7 +233,7 @@ const newUser = () => {
               <View style={styles.musicContainer}>
                 <Image
                   source={{
-                    uri: 'https://i.scdn.co/image/ab67616d0000b27336ab788f78d5026d26a5fe85',
+                    uri: 'https://i.scdn.co/image/ab67616d0000b27325d10f813fd1114b2bb9e39a',
                   }}
                   style={styles.imageStyle}
                 />
@@ -267,33 +241,7 @@ const newUser = () => {
               <View style={styles.musicContainer}>
                 <Image
                   source={{
-                    uri: 'https://i.scdn.co/image/ab67616d0000b27336ab788f78d5026d26a5fe85',
-                  }}
-                  style={styles.imageStyle}
-                />
-              </View>
-            </View>
-            <View style={styles.musicRow}>
-              <View style={styles.musicContainer}>
-                <Image
-                  source={{
-                    uri: 'https://i.scdn.co/image/ab67616d0000b27336ab788f78d5026d26a5fe85',
-                  }}
-                  style={styles.imageStyle}
-                />
-              </View>
-              <View style={styles.musicContainer}>
-                <Image
-                  source={{
-                    uri: 'https://i.scdn.co/image/ab67616d0000b27336ab788f78d5026d26a5fe85',
-                  }}
-                  style={styles.imageStyle}
-                />
-              </View>
-              <View style={styles.musicContainer}>
-                <Image
-                  source={{
-                    uri: 'https://i.scdn.co/image/ab67616d0000b27336ab788f78d5026d26a5fe85',
+                    uri: 'https://i.scdn.co/image/ab67616d0000b273fe11583497b2a332995b88ed',
                   }}
                   style={styles.imageStyle}
                 />
@@ -303,7 +251,7 @@ const newUser = () => {
               <View style={styles.musicContainer}>
                 <Image
                   source={{
-                    uri: 'https://i.scdn.co/image/ab67616d0000b27336ab788f78d5026d26a5fe85',
+                    uri: 'https://i.scdn.co/image/ab67616d0000b2736efa76d49a91a7269501643b',
                   }}
                   style={styles.imageStyle}
                 />
@@ -311,7 +259,7 @@ const newUser = () => {
               <View style={styles.musicContainer}>
                 <Image
                   source={{
-                    uri: 'https://i.scdn.co/image/ab67616d0000b27336ab788f78d5026d26a5fe85',
+                    uri: 'https://i.scdn.co/image/ab67616d0000b273eaac2a7955f5b8967991cacb',
                   }}
                   style={styles.imageStyle}
                 />
@@ -319,7 +267,59 @@ const newUser = () => {
               <View style={styles.musicContainer}>
                 <Image
                   source={{
-                    uri: 'https://i.scdn.co/image/ab67616d0000b27336ab788f78d5026d26a5fe85',
+                    uri: 'https://i.scdn.co/image/ab67616d0000b2736c0177e9b0c53a7587979ca2',
+                  }}
+                  style={styles.imageStyle}
+                />
+              </View>
+            </View>
+            <View style={styles.musicRow}>
+              <View style={styles.musicContainer}>
+                <Image
+                  source={{
+                    uri: 'https://i.scdn.co/image/ab67616d0000b2739200c61bf573ce436c5f607d',
+                  }}
+                  style={styles.imageStyle}
+                />
+              </View>
+              <View style={styles.musicContainer}>
+                <Image
+                  source={{
+                    uri: 'https://i.scdn.co/image/ab67616d0000b2738a4281dc0abc2b840e65bcfe',
+                  }}
+                  style={styles.imageStyle}
+                />
+              </View>
+              <View style={styles.musicContainer}>
+                <Image
+                  source={{
+                    uri: 'https://i.scdn.co/image/ab67616d0000b273d0c4d40063efb8e65c0bea23',
+                  }}
+                  style={styles.imageStyle}
+                />
+              </View>
+            </View>
+            <View style={styles.musicRow}>
+              <View style={styles.musicContainer}>
+                <Image
+                  source={{
+                    uri: 'https://i.scdn.co/image/ab67616d0000b273a84ed23e90d39f25f7d0d4b6',
+                  }}
+                  style={styles.imageStyle}
+                />
+              </View>
+              <View style={styles.musicContainer}>
+                <Image
+                  source={{
+                    uri: 'https://i.scdn.co/image/ab67616d0000b273b54cbe613e2ab0d4406f75e7',
+                  }}
+                  style={styles.imageStyle}
+                />
+              </View>
+              <View style={styles.musicContainer}>
+                <Image
+                  source={{
+                    uri: 'https://i.scdn.co/image/ab67616d0000b273e875f33b9c5618088d0d1f23',
                   }}
                   style={styles.imageStyle}
                 />
