@@ -158,7 +158,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
             uid: randomUUID(),
             username: 'null',
             type: 'SPOTIFY',
-            dp: userData.images[0].url,
+            dp: userData.images[0]?.url ?? '',
             providerId: userData.id,
             createdAt: new Date().getTime(),
             updatedAt: new Date().getTime(),

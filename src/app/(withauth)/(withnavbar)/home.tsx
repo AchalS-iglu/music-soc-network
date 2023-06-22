@@ -1,5 +1,5 @@
 import { useRootNavigationState, useRouter } from 'expo-router';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Image, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colours } from '../../../styles/colours';
@@ -8,17 +8,79 @@ import IconIonic from 'react-native-vector-icons/Ionicons';
 import { ScrollView } from 'react-native';
 import { AuthContext } from '../../../lib/auth/context';
 import { TouchableOpacity } from 'react-native';
+import { getPlaybackState } from '../../../lib/spotify/user';
 
 export default function App() {
   const router = useRouter();
   const navigationState = useRootNavigationState();
 
-  const { user } = useContext(AuthContext);
+  const [currentlyPlaying, setCurrentlyPlaying] = useState<{
+    isPlaying: boolean;
+    progressMs: number | null;
+    item: {
+      album_type: 'compilation';
+      total_tracks: number;
+      available_markets: string[];
+      external_urls: {
+        spotify: string;
+      };
+      href: string;
+      id: string;
+      images: {
+        url: string;
+        height: number;
+        width: number;
+      }[];
+      name: string;
+      release_date: string;
+      release_date_precision: 'year';
+      restrictions: {
+        reason: 'market';
+      };
+      type: 'album';
+      uri: string;
+      copyrights: {
+        text: string;
+        type: string;
+      }[];
+      external_ids: {
+        isrc: string;
+        ean: string;
+        upc: string;
+      };
+      genres: string[];
+      label: string;
+      popularity: number;
+      album_group: 'compilation';
+      artists: {
+        external_urls: {
+          spotify: string;
+        };
+        href: string;
+        id: string;
+        name: string;
+        type: 'artist';
+        uri: string;
+      }[];
+    } | null;
+  }>({
+    isPlaying: false,
+    progressMs: null,
+    item: null,
+  });
+
+  const { user, accessToken } = useContext(AuthContext);
 
   useEffect(() => {
-    if (!navigationState?.key) return;
+    // if (!navigationState?.key) return;
     // router.push('/auth/welcome');
-  });
+    if (!accessToken) return;
+    getPlaybackState(accessToken).then((val) => {
+      if (!val) return;
+      setCurrentlyPlaying(val);
+    });
+  }, []);
+
   return (
     <View style={{ flex: 1 }}>
       <View
@@ -108,7 +170,10 @@ export default function App() {
             >
               <Image
                 source={{
-                  uri: 'https://i.pinimg.com/564x/fb/b6/18/fbb6180970c063ca7c3b5135cb347999.jpg',
+                  uri:
+                    currentlyPlaying.isPlaying && currentlyPlaying.item?.images
+                      ? currentlyPlaying.item?.images[0].url
+                      : 'https://i.scdn.co/image/ab67616d0000b273e4b4b3b3b3b3b3b3b3b3b3b3',
                 }}
                 style={{
                   width: 50,
@@ -140,7 +205,9 @@ export default function App() {
                     color: colours.GreenDark,
                   }}
                 >
-                  Brooklyn Baby
+                  {currentlyPlaying.isPlaying
+                    ? currentlyPlaying.item?.name
+                    : 'Nothing'}
                 </Text>
                 <Text
                   style={{
@@ -148,7 +215,9 @@ export default function App() {
                     color: colours.GreenDark,
                   }}
                 >
-                  Lana Del Rey
+                  {currentlyPlaying.isPlaying
+                    ? currentlyPlaying.item?.artists[0].name
+                    : 'Nothing'}
                 </Text>
               </View>
             </View>
@@ -258,12 +327,13 @@ export default function App() {
                 paddingVertical: 8,
               }}
             >
-              <View
+              <TouchableOpacity
                 style={{
                   flexDirection: 'row',
                   justifyContent: 'space-between',
                   alignItems: 'center',
                 }}
+                onPress={() => router.push('/soulmates/find')}
               >
                 <Text
                   style={{
@@ -279,7 +349,7 @@ export default function App() {
                   size={12}
                   color={colours.BeigeDark}
                 />
-              </View>
+              </TouchableOpacity>
             </View>
           </View>
           <View
