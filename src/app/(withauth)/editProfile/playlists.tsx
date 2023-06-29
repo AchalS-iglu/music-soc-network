@@ -71,6 +71,7 @@ const playlists = () => {
       });
       setLoadingPlaylists(false);
     });
+    setLoadingPlaylists(false);
   }, []);
 
   const handleSubmit = () => {

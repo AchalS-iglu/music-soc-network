@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Playlist_t } from '../models';
+import { Artist_t, Playlist_t, Track_t } from '../models';
 
 // get user data
 export const getUserData = async (accessToken: string) => {
@@ -134,5 +134,41 @@ export const getPlaybackState = async (accessToken: string) => {
   }
   catch (err) {
     console.log(`Error in getPlaybackState: ${err}`)
+  }
+}
+
+export const getTopArtists = async (accessToken: string) => {
+  try {
+    const res = await axios(
+      'https://api.spotify.com/v1/me/top/artists?limit=25&offset=0&time_range=long_term',
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    )
+    return res.data.items as Artist_t[]
+  }
+  catch (err) {
+    console.log(`Error in getTopArtists: ${err}`)
+  }
+}
+
+export const getTopTracks = async (accessToken: string) => {
+  try {
+    const res = await axios(
+      'https://api.spotify.com/v1/me/top/tracks?limit=25&offset=0&time_range=long_term',
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    )
+    return res.data.items as Track_t[]
+  }
+  catch (err) {
+    console.log(`Error in getTopArtists: ${err}`)
   }
 }

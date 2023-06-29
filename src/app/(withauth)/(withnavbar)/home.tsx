@@ -8,7 +8,11 @@ import IconIonic from 'react-native-vector-icons/Ionicons';
 import { ScrollView } from 'react-native';
 import { AuthContext } from '../../../lib/auth/context';
 import { TouchableOpacity } from 'react-native';
-import { getPlaybackState } from '../../../lib/spotify/user';
+import {
+  getPlaybackState,
+  getTopArtists,
+  getTopTracks,
+} from '../../../lib/spotify/user';
 import { User_t } from '../../../lib/models';
 import { searchUsers } from '../../../lib/firebase/user';
 
@@ -77,7 +81,7 @@ export default function App() {
     item: null,
   });
 
-  const { user, accessToken } = useContext(AuthContext);
+  const { user, accessToken, updateUser } = useContext(AuthContext);
 
   useEffect(() => {
     // if (!navigationState?.key) return;
@@ -85,6 +89,18 @@ export default function App() {
     getPlaybackState(accessToken).then((val) => {
       if (!val) return;
       setCurrentlyPlaying(val);
+    });
+    getTopArtists(accessToken).then((val) => {
+      if (!val) return;
+      updateUser({
+        topArtists: val,
+      });
+    });
+    getTopTracks(accessToken).then((val) => {
+      if (!val) return;
+      updateUser({
+        topTracks: val,
+      });
     });
   }, []);
 

@@ -408,28 +408,32 @@ const ProfilePage = () => {
           }}
           horizontal={true}
         >
-          {[...Array(6)].map((i) => (
-            <View key={i}>
-              <Image
-                source={{
-                  uri: 'https://i.scdn.co/image/ab6761610000e5eb5a00969a4698c3132a15fbb0',
-                }}
-                style={{
-                  width: 120,
-                  height: 120,
-                  borderRadius: 10,
-                  marginRight: 3,
-                }}
-              />
-              <Text
-                style={{
-                  fontSize: 10,
-                }}
-              >
-                Taylor Swift
-              </Text>
-            </View>
-          ))}
+          {profileUser.topArtists ? (
+            profileUser.topArtists.map((x, i) => (
+              <View key={i}>
+                <Image
+                  source={{
+                    uri: x.images[0]?.url ?? 'https://picsum.photos/300',
+                  }}
+                  style={{
+                    width: 120,
+                    height: 120,
+                    borderRadius: 10,
+                    marginRight: 3,
+                  }}
+                />
+                <Text
+                  style={{
+                    fontSize: 10,
+                  }}
+                >
+                  {x.name}
+                </Text>
+              </View>
+            ))
+          ) : (
+            <></>
+          )}
         </ScrollView>
         <Text
           style={{
@@ -453,110 +457,78 @@ const ProfilePage = () => {
           horizontal={false}
           nestedScrollEnabled={true}
         >
-          {[
-            {
-              name: 'Anti Hero',
-              pic: '',
-              artist: 'Taylor Swift',
-              album: 'Midnights',
-              time: '3:20',
-            },
-            {
-              name: 'Karma',
-              pic: '',
-              artist: 'Taylor Swift',
-              album: 'Midnights',
-              time: '3:20',
-            },
-            {
-              name: 'Maroon',
-              pic: '',
-              artist: 'Taylor Swift',
-              album: 'Midnights',
-              time: '3:20',
-            },
-            {
-              name: 'Paris',
-              pic: '',
-              artist: 'Taylor Swift',
-              album: 'Midnights',
-              time: '3:20',
-            },
-          ].map((song, i) => (
-            <View
-              style={{
-                flexDirection: 'row',
-                width: '100%',
-                justifyContent: 'space-between',
-              }}
-              key={i}
-            >
+          {profileUser.topTracks ? (
+            profileUser.topTracks.map((song, i) => (
               <View
                 style={{
                   flexDirection: 'row',
+                  width: '100%',
+                  justifyContent: 'space-between',
                 }}
+                key={i}
               >
-                <Image
-                  source={{
-                    uri: 'https://i.scdn.co/image/ab6761610000e5eb5a00969a4698c3132a15fbb0',
-                  }}
+                <View
                   style={{
-                    width: 30,
-                    height: 30,
-                    marginLeft: 3,
-                    marginTop: 10,
+                    flexDirection: 'row',
                   }}
-                />
+                >
+                  <Image
+                    source={{
+                      uri:
+                        song.album.images[0].url ?? 'https://picsum.photos/300',
+                    }}
+                    style={{
+                      width: 30,
+                      height: 30,
+                      marginLeft: 3,
+                      marginTop: 10,
+                    }}
+                  />
 
+                  <View>
+                    <Text
+                      style={{
+                        fontSize: 12,
+                        marginTop: 10,
+                        marginLeft: 7,
+                      }}
+                    >
+                      {song.name}
+                    </Text>
+                    <Text
+                      style={{
+                        fontStyle: 'italic',
+                        fontSize: 10,
+                        marginLeft: 7,
+                        color: colours.BeigeDark,
+                      }}
+                    >
+                      {song.artists[0].name}
+                    </Text>
+                  </View>
+                </View>
                 <View>
                   <Text
                     style={{
                       fontSize: 12,
-                      marginTop: 10,
-                      marginLeft: 7,
-                    }}
-                  >
-                    {song.name}
-                  </Text>
-                  <Text
-                    style={{
-                      fontStyle: 'italic',
-                      fontSize: 10,
-                      marginLeft: 7,
+                      marginTop: 17,
+                      marginLeft: 70,
                       color: colours.BeigeDark,
                     }}
                   >
-                    {song.artist}
+                    {Math.floor(song.duration_ms / 60000) +
+                      ':' +
+                      (((song.duration_ms % 60000) / 1000).toFixed(0).length ==
+                      1
+                        ? '0' + ((song.duration_ms % 60000) / 1000).toFixed(0)
+                        : ((song.duration_ms % 60000) / 1000).toFixed(0))}
                   </Text>
                 </View>
               </View>
-
-              <View>
-                <Text
-                  style={{
-                    fontSize: 12,
-                    marginTop: 17,
-                    marginLeft: 70,
-                    color: colours.BeigeDark,
-                  }}
-                >
-                  {song.album}
-                </Text>
-              </View>
-              <View>
-                <Text
-                  style={{
-                    fontSize: 12,
-                    marginTop: 17,
-                    marginLeft: 70,
-                    color: colours.BeigeDark,
-                  }}
-                >
-                  {song.time}
-                </Text>
-              </View>
-            </View>
-          ))}
+            ))
+          ) : (
+            <></>
+          )}
         </ScrollView>
       </View>
     </View>

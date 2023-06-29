@@ -26,6 +26,8 @@ export type User_t = {
     pendingOutgoingFollowRequests?: {
         [uid: string]: boolean
     },
+    topArtists?: Artist_t[],
+    topTracks?: Track_t[],
 }
 
 export type Playlist_t = {
@@ -87,3 +89,50 @@ export type Message_T = {
     sender: string,
     reciever: string
 }
+
+export type Artist_t = {
+    id: string;
+    name: string;
+    genres: string[];
+    images: Array<{
+        height: number | null;
+        url: string;
+        width: number | null;
+    }>;
+    popularity: number;
+    href: string;
+    type: string;
+};
+
+export type Track_t = {
+    id: string;
+    name: string;
+    artists: Array<{
+        external_urls: {
+            spotify: string;
+        };
+        href: string;
+        id: string;
+        name: string;
+        type: string;
+        uri: string;
+    }>;
+    album: {
+        id: string;
+        name: string;
+        images: Array<{
+            height: number;
+            url: string;
+            width: number;
+        }>;
+        release_date_precision: string;
+        total_tracks: number;
+        type: string;
+        href: string;
+    };
+    duration_ms: number;
+    explicit: boolean;
+    href: string;
+    popularity: number;
+    type: string;
+};
