@@ -65,7 +65,7 @@ const statistics = () => {
                   marginLeft: 1,
                 }}
               >
-                15,000{' '}
+                150{' '}
               </Text>
               <Text
                 style={{

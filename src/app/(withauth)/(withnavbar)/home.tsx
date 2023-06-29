@@ -354,7 +354,7 @@ export default function App() {
                     </Text>
                     <Text
                       style={{
-                        fontSize: 18,
+                        fontSize: 12,
                         fontWeight: 'bold',
                         marginLeft: 4,
                         color: colours.GreenDark,
@@ -415,7 +415,7 @@ export default function App() {
                       <Text
                         style={{
                           marginLeft: 8,
-                          fontSize: 18,
+                          fontSize: 12,
                           fontWeight: 'bold',
                           color: colours.GreenDark,
                         }}

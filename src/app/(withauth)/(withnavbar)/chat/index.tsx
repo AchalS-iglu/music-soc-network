@@ -254,7 +254,7 @@ const Chat = () => {
             }}
             key={i}
             onPress={() => {
-              router.push('/chat/ad2dd7fd-a20b-4a88-8266-4770e8e48150');
+              router.push('/chat/26d9856c-875c-4632-8d44-a1cc82c666d5');
             }}
           >
             <View
