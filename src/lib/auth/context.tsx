@@ -84,9 +84,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const loginWithSpotify = async () => {
     setLoading(true);
     try {
-      const redirectUri = makeRedirectUri({
-        scheme: 'musicsn',
-      });
+      const redirectUri = makeRedirectUri();
 
       let state = generateRandomString(16);
       const scope =
