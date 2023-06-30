@@ -508,7 +508,7 @@ export default function App() {
                   </TouchableOpacity>
                 </View>
               </View>
-              {/* <View
+               <View
                 style={{
                   paddingTop: 0,
                 }}
@@ -657,7 +657,7 @@ export default function App() {
                     </Text>
                   </View>
                 ))}
-              </ScrollView> */}
+              </ScrollView>
             </>
           )}
         </SafeAreaView>
